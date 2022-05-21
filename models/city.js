@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 let city = new Schema(
   {
@@ -11,7 +11,7 @@ let city = new Schema(
       type: String
     }
   },
-  { collection: "Cities" }
-);
+  { collection: 'cities' }
+)
 
-module.exports = mongoose.model("cities", city);
+module.exports = mongoose.model('City', city)

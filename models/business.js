@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 let business = new Schema(
   {
@@ -20,7 +20,7 @@ let business = new Schema(
       type: String
     }
   },
-  { collection: "Businesses" }
-);
+  { collection: 'businesses' }
+)
 
-module.exports = mongoose.model("businesses", business);
+module.exports = mongoose.model('Business', business)

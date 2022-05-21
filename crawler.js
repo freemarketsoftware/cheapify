@@ -1,16 +1,16 @@
-const { MongoClient } = require('mongodb');
-const fs = require('fs');
+const { MongoClient } = require('mongodb')
+const fs = require('fs')
 // Connection URI
-const uri = 'mongodb://127.0.0.1:27017/construction-crawling';
+const uri = 'mongodb://127.0.0.1:27017/construction-crawling'
 // Create a new MongoClient
-const client = new MongoClient(uri);
+const client = new MongoClient(uri)
 
 //AIzaSyCtzJ_idn6NZQGipDlAjFnTQtn8_imkBww
 
 async function run() {
 
-    const file = await fs.readFileSync('./data/all.json', {encoding:'utf8', flag:'r'});
-    const json = JSON.parse(file);
+    const file = await fs.readFileSync('./data/all.json', {encoding:'utf8', flag:'r'})
+    const json = JSON.parse(file)
     // console.log(json)
 
     // const array = json['Liste Licence']
@@ -228,11 +228,11 @@ async function run() {
     // console.log(quebec)
 
     try {
-            await client.connect();
+            await client.connect()
 
-            const database = client.db('cheapify');
+            const database = client.db('cheapify')
             // console.log(database)
-            const citiesCollection = database.collection('cities');
+            const citiesCollection = database.collection('cities')
 
             const cities = await citiesCollection.find({}).toArray()
 
@@ -245,10 +245,10 @@ async function run() {
             }
 
         } finally {
-            await client.close();
+            await client.close()
         }
 }
-run().catch(console.dir);
+run().catch(console.dir)
 
 
 var fixRegion = () => {
@@ -264,19 +264,19 @@ var createLetterKey = (str) => {
 
 
 var cleanup = function(str) {
-    str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    return str.toLowerCase().replace(/[^a-z]+/g, "-");
+    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    return str.toLowerCase().replace(/[^a-z]+/g, '-')
  }
 
 
 
 
 var deleteAll = (collection, query) => {
-    collection.deleteMany(query);
+    collection.deleteMany(query)
 }
 
 var listAll = (collection, field) => {
     for(var elem of collection) {
-        console.log(elem['url']);
+        console.log(elem['url'])
     }
 }

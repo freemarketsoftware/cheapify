@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 let state = new Schema(
   {
@@ -8,7 +8,7 @@ let state = new Schema(
       type: String
     },
   },
-  { collection: "States" }
-);
+  { collection: 'states' }
+)
 
-module.exports = mongoose.model("states", state);
+module.exports = mongoose.model('State', state)

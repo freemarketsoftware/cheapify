@@ -1,0 +1,30 @@
+REGISTER
+<form>
+    <input id="emailRegisterField" type="text" name="email" />
+    <input id="passwordRegisterField" type="password" name="password" />
+    <button id="registerButton">Register</button>
+</form>
+
+<script>
+    let email
+    let password
+
+    document.getElementById('emailRegisterField').addEventListener('input', function(event) {
+        email = event.target.value
+    })
+    document.getElementById('passwordRegisterField').addEventListener('input', function(event) {
+        password = event.target.value
+    })
+
+    document.getElementById('registerButton').addEventListener('click', async function (event) {
+        event.preventDefault()
+        const res = await fetch('/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        console.log(res)
+    })
+</script>
