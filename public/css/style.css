@@ -1,5 +1,30 @@
+:root {
+    --red-hover: rgb(231, 0, 0);
+}
 
+.btn {
+    font-weight: bold;
+    margin: 0px 5px;
+}
 
-.back {
+.btn.btn-primary {
+    background-color: red;
+    border-color: red;
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--red-hover);
+    border-color: var(--red-hover);
+}
+
+.btn.btn-secondary {
     background-color: white;
+    border-color: red;
+    color: red;
+}
+
+.btn.btn-secondary:hover {
+    background-color: var(--red-hover);
+    border-color: var(--red-hover);
+    color: white;
 }

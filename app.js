@@ -13,6 +13,7 @@ const { engine } = require('express-handlebars')
 
 const routes = require('./routes/index')
 const authRoutes = require('./routes/auth')
+const projectRoutes = require('./routes/project')
 
 // SERVER
 const app = module.exports = express() 
@@ -32,6 +33,7 @@ app.use(cookieParser())
 // ROUTING
 app.use('/', routes)
 app.use('/', authRoutes)
+app.use('/', projectRoutes)
 
 // DATABASE
 mongoose.connect(mongo_uri)

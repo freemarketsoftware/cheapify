@@ -1,18 +1,19 @@
 var express = require('express')
 var router = express.Router()
 const db = require('../db')
-const { registrationValidator, loginValidator } = require('../helpers/validators');
 const bcrypt = require('bcrypt')
+
+const { authenticated } = require('../middlewares/authenticated')
+const { registrationValidator, loginValidator } = require('../helpers/validators');
 
 const User = require('../models/user')
 const Project = require('../models/project')
 
-router.get('/', async (req, res) => {
+router.get('/',  async (req, res) => {
     // console.log(await db.get().collection('cities').find().toArray())
     console.log(req.session)
     res.render('home', { layout: 'index', value: 'test' })
 })
-
 
 router.get('/auth/login', (req, res) => {
     res.render('auth/login', { layout: 'index', value: 'test' })
@@ -23,8 +24,8 @@ router.get('/auth/register', (req, res) => {
 })
 
 router.get('/auth/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
+    req.session.destroy()
+    res.redirect('/')
 })
 
 router.get('/auth/reset', (req, res) => {
@@ -32,19 +33,6 @@ router.get('/auth/reset', (req, res) => {
 })
 
 
-router.get('/projects/list', (req, res) => {
-    // const projects = 
-
-    res.render('/projects/list', { layout: 'index', value: 'test' })
-})
-
-router.get('/projects/create', (req, res) => {
-    res.render('projects/create', { layout: 'index', value: 'test' })
-})
-
-router.get('/projects/edit/:id', (req, res) => {
-    res.render('projects/edit', { layout: 'index', value: 'test' })
-})
 
 // POST
 

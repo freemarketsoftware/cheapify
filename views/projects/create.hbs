@@ -1,1 +1,29 @@
-CREATE FORM
+<form>
+    <input id="titleProject" type="text"/>
+    <textarea id="descriptionProject"></textarea>
+    <button id="createProjectBtn">Create project</button>
+</form>
+
+<script>
+    let title
+    let descriptiom
+
+    document.getElementById('titleProject').addEventListener('input', function(event) {
+        title = event.target.value
+    })
+    document.getElementById('descriptionProject').addEventListener('input', function(event) {
+        descriptiom = event.target.value
+    })
+
+    document.getElementById('createProjectBtn').addEventListener('click', async function (event) {
+        event.preventDefault()
+        const res = await fetch('/projects/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, descriptiom }),
+        })
+        console.log(res)
+    })
+</script>

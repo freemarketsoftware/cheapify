@@ -1,17 +1,38 @@
-<form>
-    <input id="emailLoginField" type="text" name="email" />
-    <input id="passwordLoginField" type="password" name="password" />
-    <button id="loginButton">Login</button>
-</form>
-
+<div class="login-component container">
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-4 mt-4">
+            <form>
+                <div>
+                    <div>
+                        <label class="font-weight-bold">Courriel</label>
+                        <input id="emailLoginField" class="form-control" type="text" name="email" />
+                    </div>
+                    <div class="mt-2">
+                        <label class="font-weight-bold">Mot de passe</label>
+                        <input id="passwordLoginField" class="form-control" type="password" name="password" />
+                    </div>
+                </div>
+                <div class="mt-4 d-flex flex-row justify-content-center">
+                    <div>
+                        <button id="resetPassword" class="btn btn-secondary">Récupérer mot de passe</button>
+                    </div>
+                    <div>
+                        <button id="loginButton" class="btn btn-primary">Connection</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/css/auth/login.css" />
 <script>
     let email
     let password
 
-    document.getElementById('emailLoginField').addEventListener('input', function(event) {
+    document.getElementById('emailLoginField').addEventListener('input', function (event) {
         email = event.target.value
     })
-    document.getElementById('passwordLoginField').addEventListener('input', function(event) {
+    document.getElementById('passwordLoginField').addEventListener('input', function (event) {
         password = event.target.value
     })
 
@@ -24,6 +45,17 @@
             },
             body: JSON.stringify({ email, password }),
         })
-        console.log(res)
+        if(res.status === 200) {
+            alertify.notify('Connexion réussie, redirection vers votre page d\'origine', 'success', 5)
+        } else {
+            alertify.notify('Courriel / mot de passe invalide', 'error', 5)
+        }
+    })
+
+    document.getElementById('resetPassword').addEventListener('click', async function (event) {
+        event.preventDefault()
+        window.location.replace("/auth/reset");
     })
 </script>
+
+{{!-- const body = await res.json() --}}

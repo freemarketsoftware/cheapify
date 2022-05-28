@@ -1,17 +1,30 @@
-<form>
-    <input id="emailLoginField" type="text" name="email" />
-    <button id="loginButton">Reset password</button>
-</form>
+<div class="reset-component container">
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-4 mt-4">
+            <form>
+                <div>
+                    <label>Courriel</label>
+                    <input id="emailResetField" class="form-control" type="text" name="email" />
+                </div>
+                <div class="mt-4 d-flex flex-row justify-content-center">
+                    <div>
+                        <button id="resetButton" class="btn btn-primary">Envoyer message de réinitialisation</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/css/auth/reset.css" />
 
 <script>
     let email
 
-    document.getElementById('emailLoginField').addEventListener('input', function(event) {
+    document.getElementById('emailResetField').addEventListener('input', function (event) {
         email = event.target.value
     })
-    
 
-    document.getElementById('loginButton').addEventListener('click', async function (event) {
+    document.getElementById('resetButton').addEventListener('click', async function (event) {
         event.preventDefault()
         const res = await fetch('/auth/reset', {
             method: 'POST',
@@ -20,6 +33,5 @@
             },
             body: JSON.stringify({ email }),
         })
-        console.log(res)
     })
 </script>

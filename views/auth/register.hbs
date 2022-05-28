@@ -1,13 +1,36 @@
-REGISTER
-<form>
-    <input id="emailRegisterField" type="text" name="email" />
-    <input id="passwordRegisterField" type="password" name="password" />
-    <button id="registerButton">Register</button>
-</form>
+<div class="register-component container">
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-4 mt-4">
+            <form>
+                <div>
+                    <div>
+                        <label>Courriel</label>
+                        <input id="emailRegisterField" class="form-control" type="text" name="email" />
+                    </div>
+                    <div class="mt-2">
+                        <label >Mot de passe</label>
+                        <input id="passwordRegisterField" class="form-control" type="password" name="password" />
+                    </div>
+                    <div class="mt-2">
+                        <label >Confirmation du mot de passe</label>
+                        <input id="passwordConfirmationRegisterField" class="form-control" type="password" name="password" />
+                    </div>
+                </div>
+                <div class="mt-4 d-flex flex-row justify-content-center">
+                    <div>
+                        <button id="registerButton" class="btn btn-primary">S'inscrire</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/css/auth/register.css" />
 
 <script>
     let email
     let password
+    let passwordConfirmation
 
     document.getElementById('emailRegisterField').addEventListener('input', function(event) {
         email = event.target.value
@@ -15,9 +38,19 @@ REGISTER
     document.getElementById('passwordRegisterField').addEventListener('input', function(event) {
         password = event.target.value
     })
+    document.getElementById('passwordConfirmationRegisterField').addEventListener('input', function(event) {
+        passwordConfirmation = event.target.value
+    })
 
     document.getElementById('registerButton').addEventListener('click', async function (event) {
         event.preventDefault()
+
+        if(passwordConfirmation !== password) {
+            alertify.notify('Confirmation du mot de passe non identique', 'error', 5)
+
+            return
+        }
+
         const res = await fetch('/auth/register', {
             method: 'POST',
             headers: {
@@ -26,5 +59,10 @@ REGISTER
             body: JSON.stringify({ email, password }),
         })
         console.log(res)
+        if(res.status === 200) {
+            alertify.notify('Inscription réussie, redirection vers votre page d\'origine', 'success', 5)
+        } else {
+            alertify.notify('Échec de l\'inscription', 'error', 5)
+        }
     })
 </script>

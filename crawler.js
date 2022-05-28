@@ -11,6 +11,20 @@ async function run() {
 
     const file = await fs.readFileSync('./data/all.json', {encoding:'utf8', flag:'r'})
     const json = JSON.parse(file)
+
+    // console.log(json.filter(elem => elem.name.toLowerCase().includes("paysage alex")))
+
+    const tuples = []; 
+    const cities = Array.from(new Set(json.map(elem => elem.city)))
+    cities.forEach(city => {
+        const cies = json.filter(el => el.city === city)
+        tuples.push({companies: cies, city})
+    })
+
+
+
+
+
     // console.log(json)
 
     // const array = json['Liste Licence']
@@ -44,12 +58,10 @@ async function run() {
     // })
 
     
-    const cities = Array.from(new Set(json.map(elem => elem.city)))
     // console.log(cities)
     // const removed = json.filter(el => el.name === null)
     // console.log(removed)
 
-    // const tuples = []; 
     // function compare( a, b ) {
     //     if ( a.count < b.count ){
     //       return 1;
@@ -230,13 +242,13 @@ async function run() {
     try {
             await client.connect()
 
-            const database = client.db('cheapify')
+            const database = client.db('cheapasdify')
             // console.log(database)
             const citiesCollection = database.collection('cities')
 
             const cities = await citiesCollection.find({}).toArray()
 
-            console.log(cities)
+            // console.log(cities)
             for(const city of cities) {
                 // const query = {_id: city._id}
                 // const objSet = {$set: {state: 'Quebec'}}
