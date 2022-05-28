@@ -1,24 +1,25 @@
 <div class="register-component container">
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-4 mt-4">
-            <form>
+            <form id="registerForm" action="#" method="post">
                 <div>
                     <div>
                         <label>Courriel</label>
                         <input id="emailRegisterField" class="form-control" type="text" name="email" />
                     </div>
                     <div class="mt-2">
-                        <label >Mot de passe</label>
+                        <label>Mot de passe</label>
                         <input id="passwordRegisterField" class="form-control" type="password" name="password" />
                     </div>
                     <div class="mt-2">
-                        <label >Confirmation du mot de passe</label>
-                        <input id="passwordConfirmationRegisterField" class="form-control" type="password" name="password" />
+                        <label>Confirmation du mot de passe</label>
+                        <input id="passwordConfirmationRegisterField" class="form-control" type="password"
+                            name="password" />
                     </div>
                 </div>
                 <div class="mt-4 d-flex flex-row justify-content-center">
                     <div>
-                        <button id="registerButton" class="btn btn-primary">S'inscrire</button>
+                        <button id="register_submit-btn" class="btn btn-primary">S'inscrire</button>
                     </div>
                 </div>
             </form>
@@ -26,26 +27,91 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="/css/auth/register.css" />
-
+<script>
+    const validation = new window.JustValidate('#registerForm',
+        {},
+        [{
+            key: 'emailRequired',
+            dict: {
+                en: 'Email is required',
+                fr: 'Courriel est requis',
+            }
+        },
+        {
+            key: 'emailInvalid',
+            dict: {
+                en: 'Email is invalid',
+                fr: 'Courriel est invalide',
+            }
+        },
+        {
+            key: 'passwordRequired',
+            dict: {
+                en: 'Password is required',
+                fr: 'Mot de passe requis',
+            }
+        },
+        {
+            key: 'passwordMinLength',
+            dict: {
+                en: 'Password must be longer than 8',
+                fr: 'Mot de passe doit être plus que 8 caractères',
+            }
+        }]
+    )
+    validation.setCurrentLocale('fr')
+    validation
+        .addField('#emailRegisterField', [
+            {
+                rule: 'required',
+                errorMessage: 'emailRequired',
+            },
+            {
+                rule: 'email',
+                errorMessage: 'emailInvalid',
+            },
+        ])
+        .addField('#passwordRegisterField', [
+            {
+                rule: 'required',
+                errorMessage: 'passwordRequired',
+            },
+            {
+                rule: 'minLength',
+                value: 8,
+                errorMessage: 'passwordMinLength',
+            },
+        ])
+        .addField('#passwordConfirmationRegisterField', [
+            {
+                rule: 'required',
+                errorMessage: 'passwordRequired',
+            },
+        ])
+        .onSuccess((event) => {
+            event.preventDefault()
+            submitLogin()
+        }).onFail((fields) => { })
+</script>
 <script>
     let email
     let password
     let passwordConfirmation
 
-    document.getElementById('emailRegisterField').addEventListener('input', function(event) {
+    document.getElementById('emailRegisterField').addEventListener('input', function (event) {
         email = event.target.value
     })
-    document.getElementById('passwordRegisterField').addEventListener('input', function(event) {
+    document.getElementById('passwordRegisterField').addEventListener('input', function (event) {
         password = event.target.value
     })
-    document.getElementById('passwordConfirmationRegisterField').addEventListener('input', function(event) {
+    document.getElementById('passwordConfirmationRegisterField').addEventListener('input', function (event) {
         passwordConfirmation = event.target.value
     })
 
     document.getElementById('registerButton').addEventListener('click', async function (event) {
         event.preventDefault()
 
-        if(passwordConfirmation !== password) {
+        if (passwordConfirmation !== password) {
             alertify.notify('Confirmation du mot de passe non identique', 'error', 5)
 
             return
@@ -59,7 +125,7 @@
             body: JSON.stringify({ email, password }),
         })
         console.log(res)
-        if(res.status === 200) {
+        if (res.status === 200) {
             alertify.notify('Inscription réussie, redirection vers votre page d\'origine', 'success', 5)
         } else {
             alertify.notify('Échec de l\'inscription', 'error', 5)

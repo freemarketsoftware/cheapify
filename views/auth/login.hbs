@@ -1,7 +1,7 @@
 <div class="login-component container">
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-4 mt-4">
-            <form>
+            <form id="loginForm" action="#" method="post">
                 <div>
                     <div>
                         <label class="font-weight-bold">Courriel</label>
@@ -17,7 +17,7 @@
                         <button id="resetPassword" class="btn btn-secondary">Récupérer mot de passe</button>
                     </div>
                     <div>
-                        <button id="loginButton" class="btn btn-primary">Connection</button>
+                        <button id="login_submit-btn" class="btn btn-primary">Connection</button>
                     </div>
                 </div>
             </form>
@@ -25,6 +25,55 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="/css/auth/login.css" />
+<script>
+    const validation = new window.JustValidate('#loginForm',
+        {},
+        [{
+            key: 'emailRequired',
+            dict: {
+                en: 'Email is required',
+                fr: 'Courriel est requis',
+            }
+        },
+        {
+            key: 'emailInvalid',
+            dict: {
+                en: 'Email is invalid',
+                fr: 'Courriel est invalide',
+            }
+        },
+        {
+            key: 'passwordRequired',
+            dict: {
+                en: 'Password is required',
+                fr: 'Mot de passe requis',
+            }
+        }]
+    )
+    validation.setCurrentLocale('fr')
+    validation
+        .addField('#emailLoginField', [
+            {
+                rule: 'required',
+                errorMessage: 'emailRequired',
+            },
+            {
+                rule: 'email',
+                errorMessage: 'emailInvalid',
+            },
+        ])
+        .addField('#passwordLoginField', [
+            {
+                rule: 'required',
+                errorMessage: 'passwordRequired',
+            },
+
+        ])
+        .onSuccess((event) => {
+            event.preventDefault()
+            submitLogin()
+        }).onFail((fields) => { })
+</script>
 <script>
     let email
     let password
@@ -36,8 +85,12 @@
         password = event.target.value
     })
 
-    document.getElementById('loginButton').addEventListener('click', async function (event) {
+    document.getElementById('resetPassword').addEventListener('click', async function (event) {
         event.preventDefault()
+        window.location = ("/auth/reset");
+    })
+
+    async function submitLogin() {
         const res = await fetch('/auth/login', {
             method: 'POST',
             headers: {
@@ -45,17 +98,13 @@
             },
             body: JSON.stringify({ email, password }),
         })
-        if(res.status === 200) {
+        if (res.status === 200) {
             alertify.notify('Connexion réussie, redirection vers votre page d\'origine', 'success', 5)
         } else {
             alertify.notify('Courriel / mot de passe invalide', 'error', 5)
         }
-    })
+    }
 
-    document.getElementById('resetPassword').addEventListener('click', async function (event) {
-        event.preventDefault()
-        window.location.replace("/auth/reset");
-    })
 </script>
 
 {{!-- const body = await res.json() --}}

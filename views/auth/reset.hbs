@@ -1,14 +1,15 @@
 <div class="reset-component container">
     <div class="row d-flex flex-row justify-content-center">
         <div class="col-4 mt-4">
-            <form>
+            <form id="resetForm">
                 <div>
                     <label>Courriel</label>
-                    <input id="emailResetField" class="form-control" type="text" name="email" />
+                    <input id="emailResetField" name="emailResetField" class="form-control" type="text" name="email" />
                 </div>
                 <div class="mt-4 d-flex flex-row justify-content-center">
                     <div>
-                        <button id="resetButton" class="btn btn-primary">Envoyer message de réinitialisation</button>
+                        <button id="reset_submit-btn" class="btn btn-primary">Envoyer message de
+                            réinitialisation</button>
                     </div>
                 </div>
             </form>
@@ -16,7 +17,37 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="/css/auth/reset.css" />
-
+<script>
+    const validation = new window.JustValidate('#resetForm',
+        {},
+        [{
+            key: 'Email is required',
+            dict: {
+                fr: 'Courriel est requis',
+            }
+        },
+        {
+            key: 'Email is invalid',
+            dict: {
+                fr: 'Courriel est invalide',
+            }
+        }]
+    )
+    validation.setCurrentLocale('fr')
+    validation.addField('#emailResetField', [
+        {
+            rule: 'required',
+            errorMessage: 'Email is required',
+        },
+        {
+            rule: 'email',
+            errorMessage: 'Email is invalid',
+        },
+    ]).onSuccess((event) => {
+        event.preventDefault()
+        submitReset()
+    }).onFail((fields) => { })
+</script>
 <script>
     let email
 
@@ -24,8 +55,7 @@
         email = event.target.value
     })
 
-    document.getElementById('resetButton').addEventListener('click', async function (event) {
-        event.preventDefault()
+    async function submitReset() {
         const res = await fetch('/auth/reset', {
             method: 'POST',
             headers: {
@@ -33,5 +63,7 @@
             },
             body: JSON.stringify({ email }),
         })
-    })
+        alertify.notify('Réinitialisation envoyée, vérifier votre courriel', 'success', 5)
+    }
+
 </script>

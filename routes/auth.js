@@ -38,7 +38,7 @@ router.post('/auth/register', async (req, res) => {
 
 router.post('/auth/reset', async (req, res) => {
     const userExist = await User.exists({ email: req.body.email })
-
+    res.status(200).send({ valid: true })
 })
 
 module.exports = router
