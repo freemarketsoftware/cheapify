@@ -1,7 +1,7 @@
 <div class="register-component container">
     <div class="row d-flex flex-row justify-content-center">
-        <div class="col-4 mt-4">
-            <form id="registerForm" action="#" method="post">
+        <div class="col-4 mt-4 card p-4">
+            <form id="registerForm">
                 <div>
                     <div>
                         <label>Courriel</label>
@@ -23,6 +23,11 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="d-flex flex-row justify-content-center">
+            <a href="/auth/login">Connection</a>
         </div>
     </div>
 </div>
@@ -57,6 +62,13 @@
                 en: 'Password must be longer than 8',
                 fr: 'Mot de passe doit être plus que 8 caractères',
             }
+        },
+        {
+            key: 'passwordNotMatch',
+            dict: {
+                en: 'Passwords must be identical',
+                fr: 'Les mots de passe doivent être identiques',
+            }
         }]
     )
     validation.setCurrentLocale('fr')
@@ -81,16 +93,33 @@
                 value: 8,
                 errorMessage: 'passwordMinLength',
             },
+
         ])
         .addField('#passwordConfirmationRegisterField', [
             {
                 rule: 'required',
                 errorMessage: 'passwordRequired',
             },
+            {
+                validator: (value, fields) => {
+                    if (
+                        fields['#passwordRegisterField'] &&
+                        fields['#passwordRegisterField'].elem
+                    ) {
+                        const repeatPasswordValue =
+                            fields['#passwordRegisterField'].elem.value;
+
+                        return value === repeatPasswordValue;
+                    }
+
+                    return true;
+                },
+                errorMessage: 'passwordNotMatch',
+            }
         ])
         .onSuccess((event) => {
             event.preventDefault()
-            submitLogin()
+            submitRegister()
         }).onFail((fields) => { })
 </script>
 <script>
@@ -108,15 +137,7 @@
         passwordConfirmation = event.target.value
     })
 
-    document.getElementById('registerButton').addEventListener('click', async function (event) {
-        event.preventDefault()
-
-        if (passwordConfirmation !== password) {
-            alertify.notify('Confirmation du mot de passe non identique', 'error', 5)
-
-            return
-        }
-
+    async function submitRegister() {
         const res = await fetch('/auth/register', {
             method: 'POST',
             headers: {
@@ -130,5 +151,5 @@
         } else {
             alertify.notify('Échec de l\'inscription', 'error', 5)
         }
-    })
+    }
 </script>
