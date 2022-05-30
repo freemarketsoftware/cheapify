@@ -1,29 +1,96 @@
-<form>
-    <input id="titleProject" type="text"/>
-    <textarea id="descriptionProject"></textarea>
-    <button id="createProjectBtn">Create project</button>
-</form>
+<div class='create-project-component container'>
+    <div class='row d-flex flex-row justify-content-center'>
+        <div class='col-10 mt-4 card p-4'>
+            <form action='/projects/create' id='createForm' name='createForm' method='post'
+                enctype='multipart/form-data'>
+                <div>
+                    <input id='id' class='form-control' type='hidden' value='{{projectId}}'>
+                </div>
+                <div>
+                    <label>Titre</label>
+                    <input id='title' class='form-control' type='text' placeholder='Titre' value='My title' />
+                </div>
+                <div>
+                    <label>Description</label>
+                    <textarea id='description' class='form-control' placeholder='Description'>My description</textarea>
+                </div>
+                <div>
+                    <label>Image(s) du projet</label>
+                    <input type='file' class='form-control' id='pictures' multiple />
+                </div>
+                <div class='d-flex flex-row justify-content-end'>
+                    <button type='submit' class='btn btn-primary' id='createProject_submit-btn'>Créer le projet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link rel='stylesheet' type='text/css' href='/css/projects/projects.css' />
 
 <script>
-    let title
-    let descriptiom
+    const validation = new window.JustValidate('#createForm',
+        {
+            focusInvalidField: true,
+        },
+        [{
+            key: 'titleRequired',
+            dict: {
+                en: 'Project title is required',
+                fr: 'Le titre du project est requis',
+            }
+        },
+        {
+            key: 'descriptionRequired',
+            dict: {
+                en: 'Project description is required',
+                fr: 'La description du project est requise',
+            }
+        }]
+    )
+    validation.setCurrentLocale('fr')
+    validation
+        .addField('#title', [
+            {
+                rule: 'required',
+                errorMessage: 'titleRequired',
+            },
+        ])
+        .addField('#description', [
+            {
+                rule: 'required',
+                errorMessage: 'descriptionRequired',
+            },
 
-    document.getElementById('titleProject').addEventListener('input', function(event) {
-        title = event.target.value
-    })
-    document.getElementById('descriptionProject').addEventListener('input', function(event) {
-        descriptiom = event.target.value
-    })
+        ])
+        .onSuccess((event) => {
+            event.preventDefault()
+            submitCreate()
+        }).onFail((fields) => {
 
-    document.getElementById('createProjectBtn').addEventListener('click', async function (event) {
-        event.preventDefault()
+        })
+</script>
+
+<script>
+    const id = document.getElementById('id')
+    const title = document.getElementById('title')
+    const description = document.getElementById('description')
+    const picturesInput = document.getElementById('pictures')
+
+    async function submitCreate() {
+        const formData = new FormData()
+
+        formData.append('id', id.value)
+        formData.append('title', title.value)
+        formData.append('description', description.value)
+
+
+        for (const picture of picturesInput.files) {
+            formData.append('pictures', picture)
+        }
+
         const res = await fetch('/projects/create', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, descriptiom }),
+            body: formData,
         })
-        console.log(res)
-    })
+    }
 </script>

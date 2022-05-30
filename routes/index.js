@@ -10,8 +10,6 @@ const User = require('../models/user')
 const Project = require('../models/project')
 
 router.get('/',  async (req, res) => {
-    // console.log(await db.get().collection('cities').find().toArray())
-    console.log(req.session)
     res.render('home', { layout: 'index', value: 'test' })
 })
 
@@ -31,14 +29,6 @@ router.get('/auth/logout', (req, res) => {
 router.get('/auth/reset', (req, res) => {
     res.render('auth/reset', { layout: 'index', value: 'test' })
 })
-
-
-
-// POST
-
-
-// DELETE
-
 
 
 // USER //

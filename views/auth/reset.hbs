@@ -4,7 +4,7 @@
             <form id="resetForm">
                 <div>
                     <label>Courriel</label>
-                    <input id="emailResetField" name="emailResetField" class="form-control" type="text" name="email" />
+                    <input id="email" name="email" class="form-control" type="text" name="email" />
                 </div>
                 <div class="mt-4 d-flex flex-row justify-content-center">
                     <div>
@@ -34,7 +34,7 @@
         }]
     )
     validation.setCurrentLocale('fr')
-    validation.addField('#emailResetField', [
+    validation.addField('#email', [
         {
             rule: 'required',
             errorMessage: 'Email is required',
@@ -49,11 +49,7 @@
     }).onFail((fields) => { })
 </script>
 <script>
-    let email
-
-    document.getElementById('emailResetField').addEventListener('input', function (event) {
-        email = event.target.value
-    })
+    let emailReset = document.getElementById('email')
 
     async function submitReset() {
         const res = await fetch('/auth/reset', {
@@ -61,7 +57,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify({ email: emailReset.value }),
         })
         alertify.notify('Réinitialisation envoyée, vérifier votre courriel', 'success', 5)
     }

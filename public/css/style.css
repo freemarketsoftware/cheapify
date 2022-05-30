@@ -28,3 +28,7 @@
     border-color: var(--red-hover);
     color: white;
 }
+
+.card {
+    border: 2px solid red;
+}

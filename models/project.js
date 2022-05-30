@@ -6,11 +6,9 @@ let project = new Schema(
     {
         title: {
             type: String,
-            required: true,
         },
         description: {
             type: String,
-            required: true,
         },
         owner: { 
             type: mongoose.Schema.Types.ObjectId,
@@ -18,8 +16,8 @@ let project = new Schema(
         },
         status: {
             type: String,
-            enum: ['open', 'closed'],
-            default: 'open'
+            enum: ['open', 'closed', 'empty'],
+            default: 'empty'
         }
     },
     { collection: 'projects' }
