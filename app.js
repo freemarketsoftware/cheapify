@@ -39,6 +39,7 @@ const sessions = require('express-session')
 const { engine } = require('express-handlebars')
 
 const routes = require('./routes/index')
+const apiRoutes = require('./routes/api')
 const authRoutes = require('./routes/auth')
 const projectRoutes = require('./routes/project')
 
@@ -59,6 +60,7 @@ app.use(cookieParser())
 
 // ROUTING
 app.use('/', routes)
+app.use('/', apiRoutes)
 app.use('/', authRoutes)
 app.use('/', projectRoutes)
 

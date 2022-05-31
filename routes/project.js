@@ -16,18 +16,18 @@ router.get('/projects', async (req, res) => {
     // const projects = await Project.find({owner: req.session.user._id}).lean()
 
     const projects = [{
-        title: 'My first project',
-        description: 'I want to build a complete deck around my house',
+        title: 'asdasdMy first project',
+        description: 'asdasdI want to build a complete deck around my house',
         status: 'open'
     },
     {
-        title: 'My second project',
-        description: 'I want to build a complete deck around my house',
+        title: 'asdasdMy second project',
+        description: 'asdasdI want to build a complete deck around my house',
         status: 'open'
     },
     {
-        title: 'My third project',
-        description: 'I want to build a complete deck around my house',
+        title: 'asdasdMy third project',
+        description: 'asdasdI want to build a complete deck around my house',
         status: 'closed'
     }]
 
@@ -57,7 +57,7 @@ router.get('/projects/edit/:id', async (req, res) => {
 
 router.post('/projects/create', upload.array('pictures', 8), async (req, res) => {
     const user = await User.findOne({ email: req.session.user.email })
-    const project = await Project.find({_id: req.body.id})
+    const project = await Project.find({ _id: req.body.id })
     project.title = req.body.title
     project.description = req.body.description
     project.status = 'open'
