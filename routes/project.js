@@ -10,9 +10,8 @@ const { registrationValidator, loginValidator } = require('../helpers/validators
 const User = require('../models/user')
 const Project = require('../models/project')
 
-router.use(authenticated)
 
-router.get('/projects', async (req, res) => {
+router.get('/projects', [authenticated], async (req, res) => {
     // const projects = await Project.find({owner: req.session.user._id}).lean()
 
     const projects = [{

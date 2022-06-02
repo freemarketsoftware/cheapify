@@ -3,7 +3,7 @@ var router = express.Router()
 const db = require('../db')
 const bcrypt = require('bcrypt')
 
-const { authenticated } = require('../middlewares/authenticated')
+const { authenticated, second } = require('../middlewares/authenticated')
 const { registrationValidator, loginValidator } = require('../helpers/validators');
 
 const User = require('../models/user')
@@ -21,14 +21,15 @@ router.get('/auth/register', (req, res) => {
     res.render('auth/register', { layout: 'index', value: 'test' })
 })
 
-router.get('/auth/logout', (req, res) => {
+router.get('/auth/reset', (req, res) => {
+    res.render('auth/reset', { layout: 'index', value: 'test' })
+})
+
+router.get('/auth/logout', [authenticated], (req, res) => {
     req.session.destroy()
     res.redirect('/')
 })
 
-router.get('/auth/reset', (req, res) => {
-    res.render('auth/reset', { layout: 'index', value: 'test' })
-})
 
 
 // USER //

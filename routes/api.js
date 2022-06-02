@@ -12,7 +12,7 @@ const Project = require('../models/project')
 
 // apiRouter.use(authenticated)
 
-apiRouter.get('/api/projects', async (req, res) => {
+apiRouter.get('/api/projects', [authenticated],async (req, res) => {
     // const projects = await Project.find({owner: req.session.user._id}).lean()
 
     const projects = [{

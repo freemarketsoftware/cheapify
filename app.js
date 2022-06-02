@@ -43,12 +43,30 @@ const apiRoutes = require('./routes/api')
 const authRoutes = require('./routes/auth')
 const projectRoutes = require('./routes/project')
 
+const env = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || '3000';
+
 // SERVER
 const app = module.exports = express()
-app.use(cors())
+
+// Setup CORS requests based on environment
+if (env === 'development') {
+    app.use(cors({
+        origin: 'http://localhost:19006',
+        credentials: true,
+    }));
+  } else {
+    app.use(
+      cors({
+        origin: 'https://website.com',
+        credentials: true,
+      }),
+    );
+  }
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+
 
 app.use(sessions({
     secret: process.env.SESSION_SECRET,
@@ -58,6 +76,16 @@ app.use(sessions({
 }))
 app.use(cookieParser())
 
+// app.use(function (req, res, next) {
+//     let origin = req.headers.origin;
+//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//     res.header('Access-Control-Allow-Credentials', true);
+//     next();
+// });
+
+app.options('*', cors());
 // ROUTING
 app.use('/', routes)
 app.use('/', apiRoutes)
@@ -82,4 +110,4 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs')
 
 
-app.listen(3000)
+app.listen(port)

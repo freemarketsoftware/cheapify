@@ -1,6 +1,7 @@
 
 
 function authenticated(req, res, next) {
+    console.log(req.headers)
     if(req.session.user){
         next()
      } else {
@@ -10,5 +11,5 @@ function authenticated(req, res, next) {
 }
 
 module.exports = {
-    authenticated
+    authenticated,
 }

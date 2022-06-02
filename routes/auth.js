@@ -14,6 +14,7 @@ router.post('/auth/login', async (req, res) => {
         const compare = await bcrypt.compare(req.body.password, user.password)
         if (compare) {
             req.session.user = user
+            console.log(user)
             return res.status(200).json({ valid: true })
         }
     }
