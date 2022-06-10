@@ -1,31 +1,32 @@
 <div class='create-project-component container'>
     <div class='row d-flex flex-row justify-content-center'>
         <div class='col-10 mt-4 card p-4'>
-            <form action='/projects/create' id='createForm' name='createForm' method='post'
+            <form action='/ads/create' id='createForm' name='createForm' method='post'
                 enctype='multipart/form-data'>
-                <div>
-                    <input id='id' class='form-control' type='hidden' value='{{projectId}}'>
-                </div>
                 <div>
                     <label>Titre</label>
                     <input id='title' class='form-control' type='text' placeholder='Titre' value='My title' />
+                </div>
+                <div>
+                    <label>Prix</label>
+                    <input id='price' class='form-control' type='text' placeholder='Prix' value='100' />
                 </div>
                 <div>
                     <label>Description</label>
                     <textarea id='description' class='form-control' placeholder='Description'>My description</textarea>
                 </div>
                 <div>
-                    <label>Image(s) du projet</label>
+                    <label>Image(s)</label>
                     <input type='file' class='form-control' id='pictures' multiple />
                 </div>
                 <div class='d-flex flex-row justify-content-end'>
-                    <button type='submit' class='btn btn-primary' id='createProject_submit-btn'>Créer le projet</button>
+                    <button type='submit' class='btn btn-primary' id='create_submit-btn'>Create the ad</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<link rel='stylesheet' type='text/css' href='/css/projects/projects.css' />
+<link rel='stylesheet' type='text/css' href='/css/ads/ads.css' />
 
 <script>
     const validation = new window.JustValidate('#createForm',
@@ -35,15 +36,15 @@
         [{
             key: 'titleRequired',
             dict: {
-                en: 'Project title is required',
-                fr: 'Le titre du project est requis',
+                en: 'Ad title is required',
+                fr: 'Le titre de l\'annonce est requis',
             }
         },
         {
             key: 'descriptionRequired',
             dict: {
-                en: 'Project description is required',
-                fr: 'La description du project est requise',
+                en: 'Ad description is required',
+                fr: 'La description de l\'annonce est requise',
             }
         }]
     )
@@ -71,7 +72,6 @@
 </script>
 
 <script>
-    const id = document.getElementById('id')
     const title = document.getElementById('title')
     const description = document.getElementById('description')
     const picturesInput = document.getElementById('pictures')
@@ -79,16 +79,14 @@
     async function submitCreate() {
         const formData = new FormData()
 
-        formData.append('id', id.value)
         formData.append('title', title.value)
         formData.append('description', description.value)
-
 
         for (const picture of picturesInput.files) {
             formData.append('pictures', picture)
         }
 
-        const res = await fetch('/projects/create', {
+        const res = await fetch('/ads/create', {
             method: 'POST',
             body: formData,
         })

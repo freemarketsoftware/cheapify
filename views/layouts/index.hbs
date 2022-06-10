@@ -9,10 +9,12 @@
   </head>
   <body class="back">
     <div>
-      <div>{{> header}}</div>
-      <div>{{{body}}}</div>
+      <div>{{> header }}</div>
+      <div>{{> breadcrumbs }}</div>
+      <div>{{{ body }}}</div>
       <div>{{> footer}}</div>
     </div>
+    {{> scripts/geolocation}}
     {{> imports/body}}
   </body>
 </html>

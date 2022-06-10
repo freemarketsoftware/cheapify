@@ -3,6 +3,7 @@ const express = require('express')
 const fs = require('fs')
 const path = require('path')
 const AWS = require('aws-sdk')
+const geolib = require('geolib');
 
 const mongoose = require('mongoose')
 const db = require('./db')
@@ -41,7 +42,8 @@ const { engine } = require('express-handlebars')
 const routes = require('./routes/index')
 const apiRoutes = require('./routes/api')
 const authRoutes = require('./routes/auth')
-const projectRoutes = require('./routes/project')
+const adsRoutes = require('./routes/ads')
+const listingsRoutes = require('./routes/listings')
 
 const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || '3000';
@@ -63,6 +65,7 @@ if (env === 'development') {
       }),
     );
   }
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -76,21 +79,14 @@ app.use(sessions({
 }))
 app.use(cookieParser())
 
-// app.use(function (req, res, next) {
-//     let origin = req.headers.origin;
-//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-//     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//     res.header('Access-Control-Allow-Credentials', true);
-//     next();
-// });
-
 app.options('*', cors());
+
 // ROUTING
 app.use('/', routes)
 app.use('/', apiRoutes)
 app.use('/', authRoutes)
-app.use('/', projectRoutes)
+app.use('/', adsRoutes)
+app.use('/', listingsRoutes)
 
 // DATABASE
 mongoose.connect(mongo_uri)

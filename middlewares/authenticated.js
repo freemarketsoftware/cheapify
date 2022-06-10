@@ -1,7 +1,6 @@
 
 
 function authenticated(req, res, next) {
-    console.log(req.headers)
     if(req.session.user){
         next()
      } else {

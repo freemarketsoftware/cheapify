@@ -8,7 +8,6 @@ const { authenticated } = require('../middlewares/authenticated')
 const { registrationValidator, loginValidator } = require('../helpers/validators')
 
 const User = require('../models/user')
-const Project = require('../models/project')
 
 // apiRouter.use(authenticated)
 

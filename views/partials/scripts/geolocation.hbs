@@ -1,0 +1,21 @@
+<div>
+    <button onclick="geolocate()" class="btn btn-primary">Geolocate position</button>
+</div>
+<script>
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const res = await fetch('/auth/position', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ position }),
+                })
+                console.log(res)
+            });
+        } else {
+            console.log('Geolocation not supported by this browser')
+        }
+    }
+</script>

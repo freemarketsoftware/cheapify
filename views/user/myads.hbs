@@ -1,9 +1,9 @@
 <div class="row d-flex flex-row justify-content-center">
     <div class="col-9">
         <div class="d-flex flex-row justify-content-end">
-            <button class="btn btn-primary" id="createProject">Créer nouveau projet</button>
+            <button class="btn btn-primary" id="createBtn">Create new ad</button>
         </div>
-        {{#each projects}}
+        {{#each ads}}
         <div class="card my-2">
             <div class="card-header fw-bold d-flex flex-row justify-content-between">
                 <div>{{this.title}}</div>
@@ -20,13 +20,13 @@
 </div>
 
 <script>
-    document.getElementById('createProject').addEventListener('click', async function (event) {
+    document.getElementById('createBtn').addEventListener('click', async function (event) {
 
-        let title = "My project title"
-        let description = "My project description"
+        let title = "My ad title"
+        let description = "My ad description"
 
         event.preventDefault()
-        const res = await fetch('/projects/create', {
+        const res = await fetch('/ads/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

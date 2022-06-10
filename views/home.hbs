@@ -1,11 +1,52 @@
-
-MAIN
-
-SEARCH BAR, LOCATION SELECTION and Result list
-<div class="row">
-    <div class="col-2">1</div>
-    <div class="col-2">2</div>
-    <div class="col-2">3</div>
-    <div class="col-2">4</div>
-    <div class="col-2">5</div>
+<div class="row d-flex flex-row justify-content-center">
+    <div class="col-4">
+        <div class="dropdown">
+            <div id="city-dropdown" class="dropdown-content">
+                <input class="form-control" type="text" placeholder="Entrer une ville" id="city-input"
+                    onkeyup="filterCities()">
+                <div id="city-suggestions" class="dropdown-suggestions">
+                    <div>Montréal</div>
+                    <div>Québec</div>
+                    <div>Laval</div>
+                    <div>Gatineau</div>
+                    <div>Longueil</div>
+                    <div>Sherbrooke</div>
+                    <div>Lévis</div>
+                    <div>Saguenay</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="dropdown">
+            <div id="type-dropdown" class="dropdown-content">
+                <input class="form-control" type="text" placeholder="Entrer un type de service" id="type-input"
+                    onkeyup="filterTypes()">
+                <div id="type-suggestions" class="dropdown-suggestions">
+                    <div>Plombierie</div>
+                    <div>Nettoyage</div>
+                    <div>Électricité</div>
+                    <div>Gypse</div>
+                    <div>Charpenterie</div>
+                    <div>Bois de chauffage</div>
+                    <div>Émondage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-primary">Chercher</button>
+    </div>
 </div>
+<script>
+
+    function filterTypes() {
+        console.log('filterTypes')
+    }
+
+    function filterCities() {
+        console.log('filterCities')
+    }
+
+
+</script>

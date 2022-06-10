@@ -10,10 +10,17 @@ let user = new Schema(
         },
         password: {
             type: String,
-            unique: true,
             required: true,
         },
-        projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
+        lat: {
+            type: String,
+        },
+        long: {
+            type: String,
+        },
+        ads: [
+            { type: Schema.Types.ObjectId, ref: 'Ad' }
+        ],
     },
     { collection: 'users' }
 )

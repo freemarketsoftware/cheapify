@@ -1,5 +1,45 @@
-<a href="/auth/logout">Déconnexion</a>
-<a href="/auth/register">Inscription</a>
-<a href="/auth/login">Connection</a>
-<a href="/projects">Projets</a>
-<a href="/projects/create">Projets - Créer</a>
+<div class="row">
+    <div class="col-2">
+        LOGO
+    </div>
+    <div class="col-2">
+        <a href="/auth/logout">Déconnexion</a>
+        <a href="/auth/register">Inscription</a>
+        <a href="/auth/login">Connection</a>
+        <a href="/ads">Ads</a>
+        <a href="/ads/create">Ads - Créer</a>
+    </div>
+    <div class="col-3">
+        <div class="dropdown">
+            <div id="city-dropdown" class="dropdown-content">
+                <input class="form-control" type="text" placeholder="Search" id="city-input"
+                    onkeyup="searchInput()">
+                <div id="city-suggestions" class="dropdown-suggestions">
+                    <div>Cannes à pêche</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="dropdown">
+            <div id="city-dropdown" class="dropdown-content">
+                <input class="form-control" type="text" placeholder="Location" id="city-input"
+                    onkeyup="locationInput()">
+                <div id="city-suggestions" class="dropdown-suggestions">
+                    <div>Montréal</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function searchInput() {
+        console.log('searchInput')
+    }
+
+    function locationInput() {
+        console.log('locationInput')
+    }
+
+</script>

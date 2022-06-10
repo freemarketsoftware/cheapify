@@ -42,4 +42,10 @@ router.post('/auth/reset', async (req, res) => {
     res.status(200).send({ valid: true })
 })
 
+router.post('/auth/position', [authenticated], async (req, res) => {
+    console.log(req.session.user)
+    const user = await User.findOne({ _id: req.session.user._id })
+
+})
+
 module.exports = router
