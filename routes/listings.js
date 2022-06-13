@@ -15,11 +15,15 @@ const City = require('../models/ad')
 const Category = require('../models/ad')
 
 
-router.get('/listings/:category/:city', async (req, res) => {
+router.get('/listings/:city/:category', async (req, res) => {
     const translations = {...getTranslations('LISTINGS'), ...getTranslations('AD'), ...getTranslations('HEADER')}
     
-    const category = await Category.findOne({name: req.params.category})
-    const city = await City.findOne({name: req.params.city})
+    const category = await Category.findOne({id: req.params.category})
+    const city = await City.findOne({id: req.params.city})
+
+    if(!category || !city) {
+        return
+    }
 
     // const ads = await Ad.findOne({})
     const ads = {}

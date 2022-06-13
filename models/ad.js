@@ -17,7 +17,7 @@ let ad = new Schema(
             type: String
         }],
         city: { 
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'City' 
         },
         lat: {

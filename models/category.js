@@ -5,17 +5,12 @@ const Schema = mongoose.Schema
 let category = new Schema(
     {
         name: {
-            type: String
+            type: Map
         },
-        domain: {
-            type: String
+        domain: { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Domain' 
         },
-        type: {
-
-        },
-        img: {
-            type: String
-        }
     },
     { collection: 'categories' }
 )

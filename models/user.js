@@ -18,9 +18,10 @@ let user = new Schema(
         long: {
             type: String,
         },
-        ads: [
-            { type: Schema.Types.ObjectId, ref: 'Ad' }
-        ],
+        ads: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Ad'
+        }],
     },
     { collection: 'users' }
 )

@@ -5,10 +5,12 @@ const request = require('request')
 const path = require('path')
 
 const City = require('./models/city')
-const Business = require('./models/business')
+const Domain = require('./models/domain')
+const Category = require('./models/category')
 
 const mongoose = require('mongoose')
-const { groupEnd } = require('console')
+const category = require('./models/category')
+const { getPathLength } = require('geolib')
 const mongo_uri = process.env.MONGO_URI
 
 // Connection URI
@@ -31,16 +33,35 @@ connection.once('open', () => { })
 
 async function run() {
 
-    Business.find({}, (err, bizs) => {
+    // Domain.find({}, (err, domains) => {
+    //     domains.forEach(async (dom) => {
+    //         dom.path = undefined
+    //         await dom.save()
+    //     })
+    // })
+
+    // Category.find({}, (err, categories) => {
+    //     categories.forEach(async (categoy) => {
+    //         categoy.path = undefined
+    //         await categoy.save()
+    //     })
+    // })
+
+
+    // City.find({}, (err, cities) => {
+    //     cities.forEach(async (city) => {
+    //         city.path = undefined
+    //         await city.save()
+    //     })
+    // })
 
         // console.log(bizs.filter(el => el.email === 'klevesque@dix54.ca'))
 
+        // const find = bizs.filter(el => {
+        //     return el.name.toLowerCase().includes('bena construction')
+        // })
 
-        const find = bizs.filter(el => {
-            return el.name.toLowerCase().includes('bena construction')
-        })
-
-        console.log(find)
+        // console.log(find)
 
         // bizs.forEach(biz => {
 
@@ -85,7 +106,6 @@ async function run() {
         //     }
         // })
 
-        console.log('end')
         // const uniqueAddress = Array.from(new Set(bizs.map(el => el.address)))
         // console.log(uniqueAddress.length)
         // uniqueAddress.forEach(unique => {
@@ -95,7 +115,8 @@ async function run() {
         //         console.log({ unique, len })
         //     }
         // })
-    })
+
+
     // Array.from(['pfaucon@legroupemaurice.com']).forEach((email) => {
     //         Business.deleteMany({ email: email }, (err, res) => {
     //             console.log(err, res)
@@ -107,10 +128,64 @@ async function run() {
     // })
 
 
-    // const file = await fs.readFileSync('./data/all.json', { encoding: 'utf8', flag: 'r' })
+    // const file = await fs.readFileSync('./data/category/category.json', { encoding: 'utf8', flag: 'r' })
     // const json = JSON.parse(file)
 
+    // seedDomains(json.domains)
+    // console.log(json.categories)
 
+    // seedCategories(json.categories)
+
+    // json.categories.forEach(async (category) => {
+
+
+    //     console.log(category)
+    // })
+    // path: {
+    //     type: String
+    // },
+    // name: {
+    //     type: Map
+    // },
+    // domain: { 
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Domain' 
+    // },
+
+    async function seedCategories(categories) {
+        categories.forEach(async (categ) => {
+            const domain = await Domain.findOne({path: categ.domain})
+            const category = new Category({
+                path: categ.path,
+                name: categ.name,
+                domain: domain._id
+            })
+            await category.save()
+        })
+    }
+
+
+    async function seedDomains(domains) {
+        domains.forEach(async (dom) => {
+        const domain = new Domain({
+            path: dom.path,
+            name: dom.name,
+        })
+
+        await domain.save()
+    })
+    }
+
+
+    // json.domains.forEach(async (domainjson) => {
+
+    //     const domain = new Domain({
+    //         name: domainjson,
+    //     })
+
+    //     await domain.save()
+
+    // })
 
     // const steamatic = json.filter(el => el.website === 'steamatic.ca')
     // console.log(steamatic)
@@ -120,6 +195,8 @@ async function run() {
     // const cities = Array.from(new Set(json.map(elem => elem.city)))
     // cities.sort((a, b) => a.localeCompare(b))
 
+    // const database = client.db('cheapify')
+    // const citiesCollection = database.collection('cities')
 
     // json.forEach(elem => {
     //     // console.log(elem)
@@ -204,30 +281,6 @@ async function run() {
 run().catch(console.dir)
 
 
-
-
-var passWebsiteFilter = (website) => {
-    return !['yahoo', 'videotron.ca', 'gmail.com', 'bellnet', 'glencore.ca',
-        'live.com', 'bell.net', 'live.ca', 'hotmail', 'outlook', 'sympatico',
-        'msn.com', 'bellnet', 'qmail.net', 'mail.com'].some(str => website.includes(str))
-}
-
-var transformCategory = (category) => {
-    switch(category['Sous-catégories']) {
-        case '1.2':
-            console.log('Commercial, institutionnel et industriel | Agrandissement')
-            break
-        case '1.3':
-                break
-        case '7':
-            console.log('Ventilation')
-            break
-        case '':
-            break
-            
-    } 
-}
-
 // const bizs = []
 // console.log(json[0])
 // json.forEach(biz => { 
@@ -264,6 +317,11 @@ var transformCategory = (category) => {
 // })
 
 
+// function getPath(path) {
+//     path = path.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+//     // path = path.toLowerCase().replace("'", "").replace(",", "").replace(" ", "")
+//     return path
+// }
 
 
 
