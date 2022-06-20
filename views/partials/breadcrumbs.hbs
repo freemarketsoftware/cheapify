@@ -1,3 +1,33 @@
-<a>Breadcrumbs</a>
+{{!-- <nav class="breadcrumb-header">
+  <div class="nav-wrapper">
+    <div class="col s12">
+      {{#each breadcrumbs}}
+      <a href="#!" class="breadcrumb">{{this}}</a>
+      {{/each}}
+    </div>
+  </div>
+</nav> --}}
 
-{{breadcrumbs}}
+<nav aria-label="breadcrumb mt-2" style="margin-top: 16px;">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <li class="breadcrumb-item" aria-current="page">Data</li>
+  </ol>
+</nav>
+
+<style>
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  .breadcrumb-item {
+    color: white;
+  }
+
+</style>

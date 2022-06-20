@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 let domain = new Schema(
     {
         name: {
-            type: Map
+            type: Object
         },
     },
     { collection: 'domains' }

@@ -7,9 +7,9 @@ const path = require('path')
 const City = require('./models/city')
 const Domain = require('./models/domain')
 const Category = require('./models/category')
+const Business = require('./models/business')
 
 const mongoose = require('mongoose')
-const category = require('./models/category')
 const { getPathLength } = require('geolib')
 const mongo_uri = process.env.MONGO_URI
 
@@ -33,17 +33,53 @@ connection.once('open', () => { })
 
 async function run() {
 
+    const file = await fs.readFileSync('./data/businesses.json', { encoding: 'utf8', flag: 'r' })
+    const json = JSON.parse(file)
+
+
+    json.slice(0, 3).forEach(async (biz) => {
+        const business = new Business({
+            name: biz.name,
+            email: biz.email,
+            url: biz.website,
+            phone: biz.phone,
+            address: biz.address,
+            city: biz.city,
+            state: biz.state,
+        })
+
+        const res = await business.save()
+        console.log(res)
+    })
+
+    
+
+
+
+
+
+
+
     // Domain.find({}, (err, domains) => {
     //     domains.forEach(async (dom) => {
-    //         dom.path = undefined
+    //         // dom.nameMix = undefined
+    //         // dom.nameMix = {
+    //         //     'en': dom.name.get('en'),
+    //         //     'fr': dom.name.get('fr')
+    //         // }
     //         await dom.save()
     //     })
     // })
 
     // Category.find({}, (err, categories) => {
-    //     categories.forEach(async (categoy) => {
-    //         categoy.path = undefined
-    //         await categoy.save()
+    //     categories.forEach(async (categ) => {
+    //         // categ.name = categ.nameMixed
+    //         categ.nameMixed = undefined
+    //         // categ.nameMixed = {
+    //         //     'en': categ.name.get('en'),
+    //         //     'fr': categ.name.get('fr')
+    //         // }
+    //         await categ.save()
     //     })
     // })
 
@@ -55,66 +91,66 @@ async function run() {
     //     })
     // })
 
-        // console.log(bizs.filter(el => el.email === 'klevesque@dix54.ca'))
+    // console.log(bizs.filter(el => el.email === 'klevesque@dix54.ca'))
 
-        // const find = bizs.filter(el => {
-        //     return el.name.toLowerCase().includes('bena construction')
-        // })
+    // const find = bizs.filter(el => {
+    //     return el.name.toLowerCase().includes('bena construction')
+    // })
 
-        // console.log(find)
+    // console.log(find)
 
-        // bizs.forEach(biz => {
+    // bizs.forEach(biz => {
 
-        //     const categories = JSON.parse(biz.categories) 
+    //     const categories = JSON.parse(biz.categories) 
 
-        //     if(categories.length == 2) {
-        //         categories.forEach(categ => {
-        //             if(categ['Sous-catégories'] === '7') {
-        //                 console.log(biz.name)
-        //             }
-        //         })
-        //     }
+    //     if(categories.length == 2) {
+    //         categories.forEach(categ => {
+    //             if(categ['Sous-catégories'] === '7') {
+    //                 console.log(biz.name)
+    //             }
+    //         })
+    //     }
 
-        //     // if(categories.length == 1) {
-        //     //     console.log(biz.name)
-        //     //     console.log(categories[0])
-        //     // }
-        // })
+    //     // if(categories.length == 1) {
+    //     //     console.log(biz.name)
+    //     //     console.log(categories[0])
+    //     // }
+    // })
 
 
-        // Business.deleteOne({name: biz.name}, (err,res ) => {
-        //     console.log(err, res)
-        // })  
+    // Business.deleteOne({name: biz.name}, (err,res ) => {
+    //     console.log(err, res)
+    // })  
 
-        // const group = bizs.filter(el => el.website.includes('groupe'))
-        // console.log(group.length)
-        // group.slice(0,10).forEach(el => console.log(el))
-        // // bizs.forEach(biz => {
-        //     if(passWebsiteFilter(biz.website)) {
-        //         console.log(biz.website)
-        //     }
-        // })
-        // const over = []
-        // const uniqueEmails = Array.from(new Set(bizs.map(el => el.email)))
-        // console.log(bizs.length)
-        // console.log(uniqueEmails.length)
-        // uniqueEmails.forEach(unique => {
-        //     const arr = bizs.filter(elem => elem.email.includes('group'));
-        //     const len = arr.length
-        //     if (len > 5) {
-        //         console.log("'" + unique + "'")
-        //     }
-        // })
+    // const group = bizs.filter(el => el.website.includes('groupe'))
+    // console.log(group.length)
+    // group.slice(0,10).forEach(el => console.log(el))
+    // // bizs.forEach(biz => {
+    //     if(passWebsiteFilter(biz.website)) {
+    //         console.log(biz.website)
+    //     }
+    // })
+    // const over = []
+    // const uniqueEmails = Array.from(new Set(bizs.map(el => el.email)))
+    // console.log(bizs.length)
+    // console.log(uniqueEmails.length)
+    // uniqueEmails.forEach(unique => {
+    //     const arr = bizs.filter(elem => elem.email.includes('group'));
+    //     const len = arr.length
+    //     if (len > 5) {
+    //         console.log("'" + unique + "'")
+    //     }
+    // })
 
-        // const uniqueAddress = Array.from(new Set(bizs.map(el => el.address)))
-        // console.log(uniqueAddress.length)
-        // uniqueAddress.forEach(unique => {
-        //     const arr = json.filter(elem => elem.address === unique);
-        //     const len = arr.length
-        //     if (len > 5) {
-        //         console.log({ unique, len })
-        //     }
-        // })
+    // const uniqueAddress = Array.from(new Set(bizs.map(el => el.address)))
+    // console.log(uniqueAddress.length)
+    // uniqueAddress.forEach(unique => {
+    //     const arr = json.filter(elem => elem.address === unique);
+    //     const len = arr.length
+    //     if (len > 5) {
+    //         console.log({ unique, len })
+    //     }
+    // })
 
 
     // Array.from(['pfaucon@legroupemaurice.com']).forEach((email) => {
@@ -154,7 +190,7 @@ async function run() {
 
     async function seedCategories(categories) {
         categories.forEach(async (categ) => {
-            const domain = await Domain.findOne({path: categ.domain})
+            const domain = await Domain.findOne({ path: categ.domain })
             const category = new Category({
                 path: categ.path,
                 name: categ.name,
@@ -167,13 +203,13 @@ async function run() {
 
     async function seedDomains(domains) {
         domains.forEach(async (dom) => {
-        const domain = new Domain({
-            path: dom.path,
-            name: dom.name,
-        })
+            const domain = new Domain({
+                path: dom.path,
+                name: dom.name,
+            })
 
-        await domain.save()
-    })
+            await domain.save()
+        })
     }
 
 

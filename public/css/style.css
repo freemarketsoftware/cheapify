@@ -1,5 +1,38 @@
 :root {
+    --gray-100: rgb(239, 239, 239);
     --red-hover: rgb(231, 0, 0);
+}
+
+
+.w-95 {
+    width: 95% !important;
+}
+
+.dropdown-hover:hover > .dropdown-menu {
+    display: block;
+  }
+
+/* Dropdown header */
+
+
+.header-dropdown {
+    top: 65px !important;
+    background-color: white;
+    transform: none;
+}
+
+.dropdown-content li>span {
+    color: red !important;
+}
+
+.dropdown-content li>a {
+    color: red !important;
+}
+
+.breadcrumb-header {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .btn {
@@ -29,6 +62,13 @@
     color: white;
 }
 
+.header {
+    border-bottom: 1px solid;
+    border-color: rgb(217, 217, 217);
+    height: 65px;
+}
+
 .card {
-    border: 2px solid red;
+    border-radius: 0px;
+    border-color: var(--gray-100);
 }

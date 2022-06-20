@@ -1,32 +1,77 @@
-<div class='create-project-component container'>
-    <div class='row d-flex flex-row justify-content-center'>
-        <div class='col-10 mt-4 card p-4'>
-            <form action='/ads/create' id='createForm' name='createForm' method='post'
-                enctype='multipart/form-data'>
-                <div>
-                    <label>Titre</label>
-                    <input id='title' class='form-control' type='text' placeholder='Titre' value='My title' />
+<div class="create-project-component container">
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-9 mt-4 p-4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">
+                        <span>Créer une annonce</span>
+                    </div>
+                    <div>
+                        <form action="/create" id="createForm" name="createForm" method="post"
+                            enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col s6">
+                                    {{!-- IF not logged in, display email. --}}
+                                    <div class="input-field">
+                                        <span>Adresse Email de contact</span>
+                                        <input id="email" type="text" placeholder="Adresse email de contact"
+                                            value="asdasd@gmail.com" />
+                                    </div>
+                                    {{!-- ENDIF --}}
+                                    <div class="input-field">
+                                        <span>Titre de l'annonce</span>
+                                        <input id="title" type="text" placeholder="Titre de l'annonce"
+                                            value="My title" />
+                                    </div>
+                                    <div class="input-field">
+                                        <span>Prix</span>
+                                        <input id="price" type="text" placeholder="Prix" value="100" />
+                                    </div>
+                                    <div class="input-field">
+                                        <span>Description</span>
+                                        <input id="description" type="text" placeholder="Description de l'annonce" />
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="input-field">
+                                        <span>Type d'annonce</span>
+                                        <select id="domain" placeholder="Filtre des catégories">
+                                            {{#each domains}}
+                                            <option value="{{this._id}}">{{translate this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="input-field">
+                                        <span>Categorie</span>
+                                        <select id="category" placeholder="Sélectionner une catégorie">
+                                            {{#each categories}}
+                                            <option value="{{this._id}}">{{translate this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>Image(s)</span>
+                                            <input type="file" id="pictures" multiple />
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end">
+                                <button type="submit" class="btn btn-primary" id="create_submit-btn">Créer
+                                    l'annonce</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <label>Prix</label>
-                    <input id='price' class='form-control' type='text' placeholder='Prix' value='100' />
-                </div>
-                <div>
-                    <label>Description</label>
-                    <textarea id='description' class='form-control' placeholder='Description'>My description</textarea>
-                </div>
-                <div>
-                    <label>Image(s)</label>
-                    <input type='file' class='form-control' id='pictures' multiple />
-                </div>
-                <div class='d-flex flex-row justify-content-end'>
-                    <button type='submit' class='btn btn-primary' id='create_submit-btn'>Create the ad</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<link rel='stylesheet' type='text/css' href='/css/ads/ads.css' />
+<link rel="stylesheet" type="text/css" href="/css/ads/ads.css" />
 
 <script>
     const validation = new window.JustValidate('#createForm',

@@ -20,6 +20,10 @@ let ad = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'City' 
         },
+        category: { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category' 
+        },
         lat: {
             type: String
         },
@@ -33,9 +37,6 @@ let ad = new Schema(
             type: String
         },
         phone: {
-            type: String
-        },
-        category: {
             type: String
         },
         owner: { 

@@ -6,7 +6,6 @@ const AWS = require('aws-sdk')
 const geolib = require('geolib');
 
 const mongoose = require('mongoose')
-const db = require('./db')
 const mongo_uri = process.env.MONGO_URI
 
 AWS.config.update({
@@ -39,11 +38,9 @@ const sessions = require('express-session')
 
 const { engine } = require('express-handlebars')
 
-const routes = require('./routes/index')
-const apiRoutes = require('./routes/api')
+const uiRoutes = require('./routes/ui')
 const authRoutes = require('./routes/auth')
 const adsRoutes = require('./routes/ads')
-const listingsRoutes = require('./routes/listings')
 
 const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || '3000';
@@ -70,31 +67,26 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
-
 app.use(sessions({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 72 },
     resave: false
 }))
+
 app.use(cookieParser())
 
 app.options('*', cors());
 
 // ROUTING
-app.use('/', routes)
-app.use('/', apiRoutes)
-app.use('/', authRoutes)
-app.use('/', adsRoutes)
-app.use('/', listingsRoutes)
+app.use('/ui', uiRoutes)
+app.use('/auth', authRoutes)
+app.use('/ads', adsRoutes)
 
 // DATABASE
 mongoose.connect(mongo_uri)
 const connection = mongoose.connection
-connection.once('open', () => {
-
-})
-db.set(connection)
+connection.once('open', () => {})
 
 // UI ENGINE
 app.engine('hbs', engine({
@@ -105,5 +97,10 @@ app.engine('hbs', engine({
 }))
 app.set('view engine', 'hbs')
 
+
+// hbs.handlebars.registerHelper('increasePrice', function(price) {
+//   price+=10;
+//   return price;
+// })
 
 app.listen(port)

@@ -1,6 +1,5 @@
 var express = require('express')
 var router = express.Router()
-const db = require('../db')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
@@ -10,75 +9,29 @@ const { authenticated } = require('../middlewares/authenticated')
 const { registrationValidator, loginValidator } = require('../helpers/validators')
 
 const User = require('../models/user')
+const Category = require('../models/category')
+const Domain = require('../models/domain')
 const Ad = require('../models/ad')
 
 
-router.get('/ads', async (req, res) => {
-    // const projects = await Project.find({owner: req.session.user._id}).lean()
-
-    const ads = [{
-        title: 'asdasdMy first project',
-        description: 'asdasdI want to build a complete deck around my house',
-        status: 'open'
-    },
-    {
-        title: 'asdasdMy second project',
-        description: 'asdasdI want to build a complete deck around my house',
-        status: 'open'
-    },
-    {
-        title: 'asdasdMy third project',
-        description: 'asdasdI want to build a complete deck around my house',
-        status: 'closed'
-    }]
-
-    res.render('ads/ads', { layout: 'index', ads })
-})
-
-
-router.get('/ads/:id', async (req, res) => {
-
-    res.render('ads/ads', { layout: 'index', ads })
-})
-
-
-router.get('/ads/create', [], async (req, res) => {
-    // const user = await User.findOne({ email: req.session.user.email })
-    const user = await User.findOne({ email: 'asdasd@gmail.com' })
-    const ad = new Ad({
-        owner: user._id,
-    })
-    const translations = {...getTranslations('CREATE'), ...getTranslations('AD'), ...getTranslations('HEADER')}
-    const adSaved = await ad.save()
-    user.ads.push(adSaved)
-    const userSaved = await user.save()
-    res.render('ads/create', { layout: 'index', adId: ad._id, translations, breadcrumbs: 'Hello' })
-})
-
-router.get('/ads/edit/:id', async (req, res) => {
-    const translations = {...getTranslations('EDIT'), ...getTranslations('AD'), ...getTranslations('HEADER')}
-
+router.post('/create', upload.array('pictures', 8), async (req, res) => {
     const user = await User.findOne({ email: req.session.user.email })
-    const project = await Project.findOne({ _id: req.params.id })
-    console.log(project)
-    res.render('ads/edit', { layout: 'index', data: '' })
-})
-
-
-router.post('/ads/create', upload.array('pictures', 8), async (req, res) => {
-    const user = await User.findOne({ email: req.session.user.email })
+    const email = req.body.email
     const ad = new Ad({
         owner: user._id,
         title: req.body.title,
+        category: req.body.category,
         price: req.body.price,
         description: req.body.description,
     })
-    console.log(ad)
+    const adSaved = await ad.save()
+    user.ads.push(adSaved)
+    const userSaved = await user.save()
     console.log(req.files)
     return res.status(200).json({ valid: true })
 })
 
-router.post('/ads/edit/:id', async (req, res) => {
+router.post('/edit/:id', async (req, res) => {
     const user = await User.findOne({ email: req.session.user.email })
     const ad = await Ad.findOne({ _id: req.params.id })
     if (ad && ad.owner === user._id) {

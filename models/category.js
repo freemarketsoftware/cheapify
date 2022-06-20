@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 let category = new Schema(
     {
         name: {
-            type: Map
+            type: Object
         },
         domain: { 
             type: mongoose.Schema.Types.ObjectId,

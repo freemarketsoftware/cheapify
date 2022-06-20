@@ -1,37 +1,128 @@
-<div class="row">
-    <div class="col-2">
-        LOGO
+<nav class="navbar navbar-expand-lg header">
+    <div class="container-fluid">
+        <a class="navbar-brand logo" href="/ui/home"><span class="navbar-brand text-white fw-bold">CHEAPIFY</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="/ui/create">
+                        <i class="fa-solid fa-circle-plus" style="margin-left: 2px;"></i>
+                        <span>Créer une annonce</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ui/login">
+                        <i class="fa-solid fa-user" style="margin-left: 2px;"></i>
+                        <span>Connection</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user" style="margin-left: 2px;"></i>
+                        <span>Account name</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Mes annonces</a></li>
+                        <li><a class="dropdown-item" href="#">Préférences</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/ui/logout">Déconnexion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="col-2">
-        <a href="/auth/logout">Déconnexion</a>
-        <a href="/auth/register">Inscription</a>
-        <a href="/auth/login">Connection</a>
-        <a href="/ads">Ads</a>
-        <a href="/ads/create">Ads - Créer</a>
+</nav>
+<div class="container-fluid categories">
+    <div class="row text-center">
+        <div class="col-2 domain-box">
+            <div class="nav-item dropdown dropdown-hover">
+                <a class="nav-link dropdown-toggle " href="#" id="categ1" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>Cars and trucks</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="categ1">
+                    <li><a class="dropdown-item" href="#">asdasd</a></li>
+                    <li><a class="dropdown-item" href="#">asdasd</a></li>
+                    <li><a class="dropdown-item" href="#">asdasd</a></li>
+                    <li><a class="dropdown-item" href="#">asdasd</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-2 domain-box">Buy and sell</div>
+        <div class="col-2 domain-box">Real estate</div>
+        <div class="col-2 domain-box">Services</div>
+        <div class="col-2 domain-box">Rencontres</div>
+        <div class="col-2 domain-box">Autre</div>
     </div>
-    <div class="col-3">
+</div>
+
+<style>
+    .header {
+        background-color: red;
+        border-bottom: none;
+        max-height: 50px;
+    }
+
+    .categories {
+        background-color: black;
+        color: white
+    }
+
+    /* Header Items */
+    .nav-item>a {
+        color: white;
+        font-weight: normal;
+    }
+
+    .nav-item>a:hover {
+        color: white;
+        font-weight: normal;
+        text-decoration: underline;
+    }
+
+    .nav-link:focus,
+    .nav-link:hover {
+        color: white;
+        font-weight: normal;
+    }
+
+    .navbar-brand {
+        color: white;
+        font: bolder;
+    }
+</style>
+
+{{!--
+
+<div class="header row">
+    <div class="col s1">
         <div class="dropdown">
             <div id="city-dropdown" class="dropdown-content">
-                <input class="form-control" type="text" placeholder="Search" id="city-input"
-                    onkeyup="searchInput()">
+                <input class="form-control" type="text" placeholder="Search" id="city-input" onkeyup="searchInput()">
                 <div id="city-suggestions" class="dropdown-suggestions">
-                    <div>Cannes à pêche</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col s1">
         <div class="dropdown">
             <div id="city-dropdown" class="dropdown-content">
                 <input class="form-control" type="text" placeholder="Location" id="city-input"
                     onkeyup="locationInput()">
                 <div id="city-suggestions" class="dropdown-suggestions">
-                    <div>Montréal</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
 <script>
 
     function searchInput() {

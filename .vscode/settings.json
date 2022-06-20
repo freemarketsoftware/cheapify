@@ -5,10 +5,6 @@
             "group": "Default"
         },
         {
-            "filePath": "models\\ad.js",
-            "group": "Default"
-        },
-        {
             "filePath": "routes\\ads.js",
             "group": "Default"
         }

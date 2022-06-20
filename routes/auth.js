@@ -1,6 +1,5 @@
 var express = require('express')
 var router = express.Router()
-const db = require('../db')
 const bcrypt = require('bcrypt')
 
 const { authenticated } = require('../middlewares/authenticated')
@@ -8,7 +7,7 @@ const { registrationValidator, loginValidator } = require('../helpers/validators
 
 const User = require('../models/user')
 
-router.post('/auth/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     const user = await User.findOne({ email: req.body.email })
     if (user) {
         const compare = await bcrypt.compare(req.body.password, user.password)
@@ -22,7 +21,7 @@ router.post('/auth/login', async (req, res) => {
     return res.status(401).json({ valid: false })
 })
 
-router.post('/auth/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     const userExist = await User.exists({ email: req.body.email })
     if (!userExist) {
         const user = new User({
@@ -37,12 +36,12 @@ router.post('/auth/register', async (req, res) => {
     }
 })
 
-router.post('/auth/reset', async (req, res) => {
+router.post('/reset', async (req, res) => {
     const userExist = await User.exists({ email: req.body.email })
     res.status(200).send({ valid: true })
 })
 
-router.post('/auth/position', [authenticated], async (req, res) => {
+router.post('/position', [authenticated], async (req, res) => {
     console.log(req.session.user)
     const user = await User.findOne({ _id: req.session.user._id })
 
