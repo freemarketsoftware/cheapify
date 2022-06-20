@@ -11,6 +11,9 @@ let category = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Domain' 
         },
+        displayOrder: {
+            type: Number
+        }
     },
     { collection: 'categories' }
 )

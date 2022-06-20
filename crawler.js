@@ -33,24 +33,39 @@ connection.once('open', () => { })
 
 async function run() {
 
-    const file = await fs.readFileSync('./data/businesses.json', { encoding: 'utf8', flag: 'r' })
-    const json = JSON.parse(file)
+
+    const domains = await Domain.find({}).lean()
+    const categories = await Category.find({}).lean()
 
 
-    json.slice(0, 3).forEach(async (biz) => {
-        const business = new Business({
-            name: biz.name,
-            email: biz.email,
-            url: biz.website,
-            phone: biz.phone,
-            address: biz.address,
-            city: biz.city,
-            state: biz.state,
-        })
 
-        const res = await business.save()
-        console.log(res)
-    })
+    console.log(domains)
+
+
+
+
+
+
+
+
+    // const file = await fs.readFileSync('./data/businesses.json', { encoding: 'utf8', flag: 'r' })
+    // const json = JSON.parse(file)
+
+
+    // json.slice(0, 3).forEach(async (biz) => {
+    //     const business = new Business({
+    //         name: biz.name,
+    //         email: biz.email,
+    //         url: biz.website,
+    //         phone: biz.phone,
+    //         address: biz.address,
+    //         city: biz.city,
+    //         state: biz.state,
+    //     })
+
+    //     const res = await business.save()
+    //     console.log(res)
+    // })
 
     
 
@@ -194,7 +209,8 @@ async function run() {
             const category = new Category({
                 path: categ.path,
                 name: categ.name,
-                domain: domain._id
+                domain: domain._id,
+                displayOrder: dom.displayOrder
             })
             await category.save()
         })
@@ -206,6 +222,7 @@ async function run() {
             const domain = new Domain({
                 path: dom.path,
                 name: dom.name,
+                displayOrder: dom.displayOrder
             })
 
             await domain.save()

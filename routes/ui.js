@@ -6,6 +6,8 @@ const { getTranslations } = require('../translations')
 const { authenticated, second } = require('../middlewares/authenticated')
 const { registrationValidator, loginValidator } = require('../helpers/validators');
 
+const { getConfig } = require('../helpers/ui')
+
 const User = require('../models/user')
 const Ad = require('../models/ad')
 const City = require('../models/city')
@@ -21,7 +23,7 @@ router.get('/home',  async (req, res) => {
 
 router.get('/ads/:city/:category', async (req, res) => {
     const translations = {...getTranslations('LISTINGS'), ...getTranslations('AD'), ...getTranslations('HEADER')}
-    
+    const uiConfig = getConfig();
     const category = await Category.findOne({id: req.params.category})
     const city = await City.findOne({id: req.params.city})
 
@@ -40,6 +42,7 @@ router.get('/ads/:city/:category', async (req, res) => {
 
 
 router.get('/ad/:id', async (req, res) => {
+    const uiConfig = getConfig();
 
     res.render('ads/ad', { layout: 'index', ads })
 })
@@ -47,6 +50,8 @@ router.get('/ad/:id', async (req, res) => {
 
 router.get('/create', [], async (req, res) => {
     // const user = await User.findOne({ email: req.session.user.email })
+    const uiConfig = getConfig();
+
     const locale = 'fr'
     const categories = await Category.find({}).lean()
     const domains = await Domain.find({}).lean()
@@ -61,6 +66,9 @@ router.get('/create', [], async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const translations = { ...getTranslations('EDIT'), ...getTranslations('AD'), ...getTranslations('HEADER') }
+    const uiConfig = getConfig();
+
+
 
     const user = await User.findOne({ email: req.session.user.email })
     const project = await Project.findOne({ _id: req.params.id })
