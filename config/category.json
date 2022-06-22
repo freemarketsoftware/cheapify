@@ -36,10 +36,10 @@
             }
         },
         {
-            "path": "social",
+            "path": "community",
             "name": {
-                "en": "Social",
-                "fr": "Social"
+                "en": "Community",
+                "fr": "Communauté"
             }
         }
     ],
@@ -53,7 +53,7 @@
             "domain": "real-estate"
         },
         {
-            "path": "real-estate-for-sale",
+            "path": "for-sale",
             "name": {
                 "en": "For Sale",
                 "fr": "À vendre"
@@ -61,10 +61,10 @@
             "domain": "real-estate"
         },
         {
-            "path": "commercial-real-estate",
+            "path": "commercial",
             "name": {
-                "en": "Commercial Real Estate",
-                "fr": "Immobilier Commercial"
+                "en": "Commercial",
+                "fr": "Commercial"
             },
             "domain": "real-estate"
         },
@@ -95,8 +95,16 @@
         {
             "path": "trucks",
             "name": {
-                "en": "Trucks & Vans",
-                "fr": "Camions et Fourgonnettes"
+                "en": "Trucks",
+                "fr": "Camions"
+            },
+            "domain": "vehicules"
+        },
+        {
+            "path": "vans",
+            "name": {
+                "en": "Vans",
+                "fr": "Fourgonnettes"
             },
             "domain": "vehicules"
         },
@@ -111,7 +119,7 @@
         {
             "path": "rvs-camping",
             "name": {
-                "en": "Recreational vehicules & Camping",
+                "en": "Recreational Vehicules & Camping",
                 "fr": "Véhicules récréatifs et camping"
             },
             "domain": "vehicules"
@@ -125,10 +133,10 @@
             "domain": "vehicules"
         },
         {
-            "path": "commercial-vehicules",
+            "path": "heavy-vehicules",
             "name": {
-                "en": "Commercial & Industrial Vehicules",
-                "fr": "Véhicules commerciaux et industriel"
+                "en": "Heavy Vehicules",
+                "fr": "Véhicules lours"
             },
             "domain": "vehicules"
         },
@@ -136,7 +144,7 @@
         {
             "path": "e-admin-business",
             "name": {
-                "en": "Administration, business & management",
+                "en": "Administration, Business & Management",
                 "fr": "Administration, commerce et gestion"
             },
             "domain": "employment"
@@ -145,7 +153,7 @@
         {
             "path": "e-nature",
             "name": {
-                "en": "Animals, land & environment",
+                "en": "Animals, Land & Environment",
                 "fr": "Animaux, terre et environnement"
             },
             "domain": "employment"
@@ -161,7 +169,7 @@
         {
             "path": "e-construction",
             "name": {
-                "en": "Construction & building",
+                "en": "Construction & Building",
                 "fr": "Construction et bâtiment"
             },
             "domain": "employment"
@@ -169,7 +177,7 @@
         {
             "path": "e-design-arts",
             "name": {
-                "en": "Design, arts & crafts",
+                "en": "Design, Arts & Crafts",
                 "fr": "Design, arts et artisanat"
             },
             "domain": "employment"
@@ -177,7 +185,7 @@
         {
             "path": "e-education",
             "name": {
-                "en": "Education & training",
+                "en": "Education & Training",
                 "fr": "Éducation et formation"
             },
             "domain": "employment"
@@ -193,7 +201,7 @@
         {
             "path": "e-property-services",
             "name": {
-                "en": "Facilities & property services",
+                "en": "Facilities & Property Services",
                 "fr": "Installations et services immobiliers"
             },
             "domain": "employment"
@@ -209,7 +217,7 @@
         {
             "path": "e-repair",
             "name": {
-                "en": "Repair services",
+                "en": "Repair Services",
                 "fr": "Services de réparation"
             },
             "domain": "employment"
@@ -217,7 +225,7 @@
         {
             "path": "e-beauty",
             "name": {
-                "en": "Hairdressing & beauty",
+                "en": "Hairdressing & Beauty",
                 "fr": "Coiffure et beauté"
             },
             "domain": "employment"
@@ -233,7 +241,7 @@
         {
             "path": "e-culture",
             "name": {
-                "en": "Heritage, culture & libraries",
+                "en": "Heritage, Culture & Libraries",
                 "fr": "Patrimoine, culture et bibliothèques"
             },
             "domain": "employment"
@@ -241,7 +249,7 @@
         {
             "path": "e-hospitality",
             "name": {
-                "en": "Hospitality, catering & tourism",
+                "en": "Hospitality, Catering & Tourism",
                 "fr": "Hôtellerie, restauration et tourisme"
             },
             "domain": "employment"
@@ -257,7 +265,7 @@
         {
             "path": "e-manufacturing",
             "name": {
-                "en": "Manufacturing & production",
+                "en": "Manufacturing & Production",
                 "fr": "Manufacture et production"
             },
             "domain": "employment"
@@ -265,7 +273,7 @@
         {
             "path": "e-performing-arts-media",
             "name": {
-                "en": "Performing arts & media",
+                "en": "Performing Arts & Media",
                 "fr": "Arts du spectacle et médias"
             },
             "domain": "employment"
@@ -273,7 +281,7 @@
         {
             "path": "e-marketing-advertising",
             "name": {
-                "en": "Print & publishing, marketing & advertising",
+                "en": "Print & Publishing, Marketing & Advertising",
                 "fr": "Impression et édition, marketing et publicité"
             },
             "domain": "employment"
@@ -281,7 +289,7 @@
         {
             "path": "e-customer-service",
             "name": {
-                "en": "Retail & customer services",
+                "en": "Retail & Customer Services",
                 "fr": "Vente au détail et services à la clientèle"
             },
             "domain": "employment"
@@ -289,7 +297,7 @@
         {
             "path": "e-science-mathematics",
             "name": {
-                "en": "Science, mathematics & statistics",
+                "en": "Science, Mathematics & Statistics",
                 "fr": "Science, mathématiques et statistiques"
             },
             "domain": "employment"
@@ -297,7 +305,7 @@
         {
             "path": "e-security",
             "name": {
-                "en": "Security, uniformed & protective services",
+                "en": "Security, Uniformed & Protective Services",
                 "fr": "Services de sécurité, en uniforme et de protection"
             },
             "domain": "employment"
@@ -305,7 +313,7 @@
         {
             "path": "e-social-caring",
             "name": {
-                "en": "Social work & caring services",
+                "en": "Social Work & Caring Services",
                 "fr": "Travail social et services de soins"
             },
             "domain": "employment"
@@ -313,7 +321,7 @@
         {
             "path": "e-sport-leisure",
             "name": {
-                "en": "Sport & leisure",
+                "en": "Sport & Leisure",
                 "fr": "Sport et Loisirs"
             },
             "domain": "employment"
@@ -321,7 +329,7 @@
         {
             "path": "e-transport-distribution",
             "name": {
-                "en": "Transport, distribution & logistics",
+                "en": "Transport, Distribution & Logistics",
                 "fr": "Transport, distribution et logistique"
             },
             "domain": "employment"
@@ -431,10 +439,10 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "bs-general",
+            "path": "bs-various",
             "name": {
-                "en": "General",
-                "fr": "Général"
+                "en": "Various",
+                "fr": "Divers"
             },
             "domain": "buy-and-sell"
         },
@@ -487,10 +495,10 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "bs-materials-bulk",
+            "path": "bs-construction-materials",
             "name": {
-                "en": "Materials & Bulk",
-                "fr": "Matériaux en gros"
+                "en": "Construction Materials & Other",
+                "fr": "Matériaux de construction et autre"
             },
             "domain": "buy-and-sell"
         },
@@ -566,7 +574,6 @@
             },
             "domain": "buy-and-sell"
         },
-
         {
             "path": "s-repair",
             "name": {
@@ -642,7 +649,7 @@
         {
             "path": "s-construction",
             "name": {
-                "en": "Construction and renovation",
+                "en": "Construction and Renovation",
                 "fr": "Construction et rénovation"
             },
             "domain": "services"
@@ -674,7 +681,7 @@
         {
             "path": "s-teaching",
             "name": {
-                "en": "Teaching, Courses and tutoring",
+                "en": "Teaching, Courses and Tutoring",
                 "fr": "Enseignement, cours et tutorat"
             },
             "domain": "services"
@@ -690,7 +697,7 @@
         {
             "path": "s-sales",
             "name": {
-                "en": "Garage sales, flea markets and auctions",
+                "en": "Garage Sales, Flea Markets and Auctions",
                 "fr": "Ventes de garage, marchés aux puces et encans"
             },
             "domain": "services"
@@ -711,26 +718,29 @@
             },
             "domain": "services"
         },
-
-
-
-
-
         {
             "path": "c-events",
             "name": {
                 "en": "Events & Nightlife",
                 "fr": "Évènements & Vie nocturne"
             },
-            "domain": "social"
+            "domain": "community"
         },
         {
-            "path": "c-rencontres",
+            "path": "c-meet",
             "name": {
-                "en": "Seeking",
+                "en": "Meet",
                 "fr": "Recontres"
             },
-            "domain": "social"
+            "domain": "community"
+        },
+        {
+            "path": "c-lostfound",
+            "name": {
+                "en": "Lost & Found",
+                "fr": "Perdu et trouvé"
+            },
+            "domain": "community"
         }
     ]
 }
