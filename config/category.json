@@ -5,48 +5,42 @@
             "name" : {
                 "en": "Buy & Sell",
                 "fr": "Achat et vente"
-            },
-            "displayOrder": "0"
+            }
         },
         {
             "path": "vehicules",
             "name" : {
                 "en": "Vehicules",
                 "fr": "Véhicules"
-            },
-            "displayOrder": "1"
+            }
         },
         {
             "path": "real-estate",
             "name": {
                 "en": "Real estate",
                 "fr": "Immobilier"
-            },
-            "displayOrder": "2"
+            }
         },
         {
             "path": "employment",
             "name": {
                 "en": "Employment",
                 "fr": "Emplois"
-            },
-            "displayOrder": "3"
+            }
         },
         {
             "path": "services",
             "name": {
                 "en": "Services",
                 "fr": "Services"
-            },
-            "displayOrder": "4"
+            }
         },
         {
             "path": "social",
             "name": {
                 "en": "Social",
                 "fr": "Social"
-            },
-            "displayOrder": "5"
+            }
         }
     ],
     "categories": [
@@ -56,8 +50,7 @@
                 "en": "For Rent",
                 "fr": "À louer"
             },
-            "domain": "real-estate",
-            "displayOrder": "0"
+            "domain": "real-estate"
         },
         {
             "path": "real-estate-for-sale",
@@ -65,26 +58,23 @@
                 "en": "For Sale",
                 "fr": "À vendre"
             },
-            "domain": "real-estate",
-            "displayOrder": "1"
+            "domain": "real-estate"
         },
         {
-            "path": "commercial",
+            "path": "commercial-real-estate",
             "name": {
-                "en": "Commercial",
-                "fr": "Commercial"
+                "en": "Commercial Real Estate",
+                "fr": "Immobilier Commercial"
             },
-            "domain": "real-estate",
-            "displayOrder": "2"
+            "domain": "real-estate"
         },
         {
             "path": "storage-parking",
             "name": {
                 "en": "Storage & Parking",
-                "fr": "Entreposage et Stationement"
+                "fr": "Entreposage et stationement"
             },
-            "domain": "real-estate",
-            "displayOrder": "3"
+            "domain": "real-estate"
         },
         {
             "path": "vacation-rentals",
@@ -92,8 +82,7 @@
                 "en": "Vacation Rentals",
                 "fr": "Location pour vacances"
             },
-            "domain": "real-estate",
-            "displayOrder": "4"
+            "domain": "real-estate"
         },
         {
             "path": "cars",
@@ -101,8 +90,7 @@
                 "en": "Cars",
                 "fr": "Voitures"
             },
-            "domain": "vehicules",
-            "displayOrder": "0"
+            "domain": "vehicules"
         },
         {
             "path": "trucks",
@@ -110,8 +98,7 @@
                 "en": "Trucks & Vans",
                 "fr": "Camions et Fourgonnettes"
             },
-            "domain": "vehicules",
-            "displayOrder": "1"
+            "domain": "vehicules"
         },
         {
             "path": "motos",
@@ -119,26 +106,15 @@
                 "en": "Motorbikes & Scooters",
                 "fr": "Motos & Scooters"
             },
-            "domain": "vehicules",
-            "displayOrder": "2"
+            "domain": "vehicules"
         },
         {
-            "path": "rvs",
+            "path": "rvs-camping",
             "name": {
                 "en": "Recreational vehicules & Camping",
-                "fr": "Véhicules récréatifs & Camping"
+                "fr": "Véhicules récréatifs et camping"
             },
-            "domain": "vehicules",
-            "displayOrder": "3"
-        },
-        {
-            "path": "rvs",
-            "name": {
-                "en": "Recreational vehicules & Camping",
-                "fr": "Motocyclettes & mobylettes"
-            },
-            "domain": "vehicules",
-            "displayOrder": "4"
+            "domain": "vehicules"
         },
         {
             "path": "boats",
@@ -146,249 +122,212 @@
                 "en": "Boats",
                 "fr": "Bateaux"
             },
-            "domain": "vehicules",
-            "displayOrder": "5"
+            "domain": "vehicules"
         },
         {
-            "path": "commercial-industrial-vehicules",
+            "path": "commercial-vehicules",
             "name": {
                 "en": "Commercial & Industrial Vehicules",
                 "fr": "Véhicules commerciaux et industriel"
             },
-            "domain": "vehicules",
-            "displayOrder": "6"
+            "domain": "vehicules"
         },
 
         {
-            "path": "administration-business-management",
+            "path": "e-admin-business",
             "name": {
                 "en": "Administration, business & management",
                 "fr": "Administration, commerce et gestion"
             },
-            "domain": "employment",
-            "displayOrder": "0"
+            "domain": "employment"
 
         },
         {
-            "path": "animals-land-environment",
+            "path": "e-nature",
             "name": {
                 "en": "Animals, land & environment",
                 "fr": "Animaux, terre et environnement"
             },
-            "domain": "employment",
-            "displayOrder": "1"
+            "domain": "employment"
         },
         {
-            "path": "computing-it",
+            "path": "e-it",
             "name": {
                 "en": "Software & IT",
                 "fr": "Logiciels et informatique"
             },
-            "domain": "employment",
-            "displayOrder": "2"
+            "domain": "employment"
         },
         {
-            "path": "construction",
+            "path": "e-construction",
             "name": {
                 "en": "Construction & building",
                 "fr": "Construction et bâtiment"
             },
-            "domain": "employment",
-            "displayOrder": "3"
+            "domain": "employment"
         },
         {
-            "path": "design-arts-crafts",
+            "path": "e-design-arts",
             "name": {
                 "en": "Design, arts & crafts",
                 "fr": "Design, arts et artisanat"
             },
-            "domain": "employment",
-            "displayOrder": "4"
+            "domain": "employment"
         },
         {
-            "path": "education-training",
+            "path": "e-education",
             "name": {
                 "en": "Education & training",
                 "fr": "Éducation et formation"
             },
-            "domain": "employment",
-            "displayOrder": "5"
+            "domain": "employment"
         },
         {
-            "path": "engineering",
+            "path": "e-engineering",
             "name": {
                 "en": "Engineering",
                 "fr": "Ingénierie"
             },
-            "domain": "employment",
-            "displayOrder": "6"
+            "domain": "employment"
         },
         {
-            "path": "facilities-property-services",
+            "path": "e-property-services",
             "name": {
                 "en": "Facilities & property services",
                 "fr": "Installations et services immobiliers"
             },
-            "domain": "employment",
-            "displayOrder": "7"
+            "domain": "employment"
         },
         {
-            "path": "financial-services",
+            "path": "e-financial-legal",
             "name": {
-                "en": "Financial services",
-                "fr": "Services financiers"
+                "en": "Financial & Legal services",
+                "fr": "Services légaux et financiers"
             },
-            "domain": "employment",
-            "displayOrder": "8"
+            "domain": "employment"
         },
         {
-            "path": "repair-services",
+            "path": "e-repair",
             "name": {
                 "en": "Repair services",
                 "fr": "Services de réparation"
             },
-            "domain": "employment",
-            "displayOrder": "9"
+            "domain": "employment"
         },
         {
-            "path": "hairdressing-beauty",
+            "path": "e-beauty",
             "name": {
                 "en": "Hairdressing & beauty",
                 "fr": "Coiffure et beauté"
             },
-            "domain": "employment",
-            "displayOrder": "10"
+            "domain": "employment"
         },
         {
-            "path": "Healthcare",
+            "path": "e-healthcare",
             "name": {
                 "en": "Healthcare",
                 "fr": "Soins de santé"
             },
-            "domain": "employment",
-            "displayOrder": "11"
+            "domain": "employment"
         },
         {
-            "path": "heritage-culture-libraries",
+            "path": "e-culture",
             "name": {
                 "en": "Heritage, culture & libraries",
                 "fr": "Patrimoine, culture et bibliothèques"
             },
-            "domain": "employment",
-            "displayOrder": "12"
+            "domain": "employment"
         },
         {
-            "path": "hospitality-catering-tourism",
+            "path": "e-hospitality",
             "name": {
                 "en": "Hospitality, catering & tourism",
                 "fr": "Hôtellerie, restauration et tourisme"
             },
-            "domain": "employment",
-            "displayOrder": "13"
+            "domain": "employment"
         },
         {
-            "path": "languages",
+            "path": "e-languages",
             "name": {
                 "en": "Languages",
                 "fr": "Langues"
             },
-            "domain": "employment",
-            "displayOrder": "14"
+            "domain": "employment"
         },
         {
-            "path": "legal",
-            "name": {
-                "en": "Legal & court services",
-                "fr": "Services juridiques et judiciaires"
-            },
-            "domain": "employment",
-            "displayOrder": "15"
-        },
-        {
-            "path": "manufacturing-production",
+            "path": "e-manufacturing",
             "name": {
                 "en": "Manufacturing & production",
                 "fr": "Manufacture et production"
             },
-            "domain": "employment",
-            "displayOrder": "16"
+            "domain": "employment"
         },
         {
-            "path": "performing-arts-media",
+            "path": "e-performing-arts-media",
             "name": {
                 "en": "Performing arts & media",
                 "fr": "Arts du spectacle et médias"
             },
-            "domain": "employment",
-            "displayOrder": "17"
+            "domain": "employment"
         },
         {
-            "path": "print-publishing-marketing-advertising",
+            "path": "e-marketing-advertising",
             "name": {
                 "en": "Print & publishing, marketing & advertising",
                 "fr": "Impression et édition, marketing et publicité"
             },
-            "domain": "employment",
-            "displayOrder": "18"
+            "domain": "employment"
         },
         {
-            "path": "customer-service",
+            "path": "e-customer-service",
             "name": {
                 "en": "Retail & customer services",
                 "fr": "Vente au détail et services à la clientèle"
             },
-            "domain": "employment",
-            "displayOrder": "19"
+            "domain": "employment"
         },
         {
-            "path": "science-mathematics",
+            "path": "e-science-mathematics",
             "name": {
                 "en": "Science, mathematics & statistics",
                 "fr": "Science, mathématiques et statistiques"
             },
-            "domain": "employment",
-            "displayOrder": "20"
+            "domain": "employment"
         },
         {
-            "path": "security",
+            "path": "e-security",
             "name": {
                 "en": "Security, uniformed & protective services",
                 "fr": "Services de sécurité, en uniforme et de protection"
             },
-            "domain": "employment",
-            "displayOrder": "21"
+            "domain": "employment"
         },
         {
-            "path": "social-work-caring",
+            "path": "e-social-caring",
             "name": {
                 "en": "Social work & caring services",
                 "fr": "Travail social et services de soins"
             },
-            "domain": "employment",
-            "displayOrder": "22"
+            "domain": "employment"
         },
         {
-            "path": "sport-leisure",
+            "path": "e-sport-leisure",
             "name": {
                 "en": "Sport & leisure",
                 "fr": "Sport et Loisirs"
             },
-            "domain": "employment",
-            "displayOrder": "23"
+            "domain": "employment"
         },
         {
-            "path": "transport-distribution-logistics",
+            "path": "e-transport-distribution",
             "name": {
                 "en": "Transport, distribution & logistics",
                 "fr": "Transport, distribution et logistique"
             },
-            "domain": "employment",
-            "displayOrder": "24"
+            "domain": "employment"
         },
-
-
         {
-            "path": "appliances",
+            "path": "bs-appliances",
             "name": {
                 "en": "Appliances",
                 "fr": "Électroménagers"
@@ -396,7 +335,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "arts-crafts",
+            "path": "bs-arts-crafts",
             "name": {
                 "en": "Art & Crafts",
                 "fr": "Artisanat"
@@ -404,7 +343,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "auto-parts",
+            "path": "bs-auto-parts",
             "name": {
                 "en": "Automotive Items & Parts",
                 "fr": "Articles et pièces automobiles"
@@ -412,7 +351,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "baby-kids",
+            "path": "bs-baby-kids",
             "name": {
                 "en": "Baby & Kids Stuff",
                 "fr": "Bébé et enfant"
@@ -420,7 +359,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "bikes",
+            "path": "bs-bikes",
             "name": {
                 "en": "Bicycles",
                 "fr": "Bicyclettes"
@@ -428,7 +367,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "books-magazines",
+            "path": "bs-books-magazines",
             "name": {
                 "en": "Books & Magazines",
                 "fr": "Livres et revues"
@@ -436,7 +375,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "business-commercial",
+            "path": "bs-business-commercial",
             "name": {
                 "en": "Business & Commercial",
                 "fr": "Entreprise et commerce"
@@ -444,7 +383,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "camera-video",
+            "path": "bs-camera-video",
             "name": {
                 "en": "Photo & Video equipment",
                 "fr": "Équipment de photographie et vidéo"
@@ -452,7 +391,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "cellphones",
+            "path": "bs-cellphones",
             "name": {
                 "en": "Cell Phones",
                 "fr": "Téléphones portables"
@@ -460,7 +399,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "clothing",
+            "path": "bs-clothing",
             "name": {
                 "en": "Clothes & Apparel",
                 "fr": "Vêtements"
@@ -468,7 +407,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "collectibles",
+            "path": "bs-collectibles",
             "name": {
                 "en": "Collectibles",
                 "fr": "Objets de collection"
@@ -476,7 +415,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "computers-electronics",
+            "path": "bs-computers-electronics",
             "name": {
                 "en": "Computers & electronics",
                 "fr": "Ordinateurs et électronique"
@@ -484,7 +423,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "free",
+            "path": "bs-free",
             "name": {
                 "en": "Free",
                 "fr": "Gratuit"
@@ -492,7 +431,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "general",
+            "path": "bs-general",
             "name": {
                 "en": "General",
                 "fr": "Général"
@@ -500,7 +439,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "household",
+            "path": "bs-household",
             "name": {
                 "en": "Household & Furniture",
                 "fr": "Maison et meubles"
@@ -508,71 +447,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "lawn-garden",
-            "name": {
-                "en": "Lawn & Garden",
-                "fr": "Pelouse et jardin"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "heavy-equipment",
-            "name": {
-                "en": "Heavy Equipment",
-                "fr": "Machinerie lourde"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "jewelry",
-            "name": {
-                "en": "Jewelry",
-                "fr": "Bijoux"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "materials",
-            "name": {
-                "en": "Materials",
-                "fr": "Matériaux"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "tv-movies-dvd",
-            "name": {
-                "en": "TV, Movies & DVDs",
-                "fr": "Télévision, Films et DVD"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "music-cds",
-            "name": {
-                "en": "Music & CDs",
-                "fr": "Musique et CD"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "music-instruments",
-            "name": {
-                "en": "Musical Instruments",
-                "fr": "Instruments de musique"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "sports-wellness",
-            "name": {
-                "en": "Sport & Wellness",
-                "fr": "Sport et bien-être"
-            },
-            "domain": "buy-and-sell"
-        },
-        {
-            "path": "hunt-fish-camp",
+            "path": "bs-hunt-fish-camp",
             "name": {
                 "en": "Hunting, Fishing & Camping",
                 "fr": "Chasse, pêche et camping"
@@ -580,7 +455,95 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "tooling",
+            "path": "bs-heavy-equipment",
+            "name": {
+                "en": "Heavy Equipment",
+                "fr": "Machinerie lourde"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-item-wanted",
+            "name": {
+                "en": "Wanted",
+                "fr": "Recherché"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-jewelry",
+            "name": {
+                "en": "Jewelry",
+                "fr": "Bijoux"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-lawn-garden",
+            "name": {
+                "en": "Lawn & Garden",
+                "fr": "Pelouse et jardin"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-materials-bulk",
+            "name": {
+                "en": "Materials & Bulk",
+                "fr": "Matériaux en gros"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-music-cds",
+            "name": {
+                "en": "Music & CDs",
+                "fr": "Musique et CD"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-music-instruments",
+            "name": {
+                "en": "Musical Instruments",
+                "fr": "Instruments de musique"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-parts",
+            "name": {
+                "en": "Parts",
+                "fr": "Pièces"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-other",
+            "name": {
+                "en": "Other",
+                "fr": "Autre"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-sports-wellness",
+            "name": {
+                "en": "Sport & Wellness",
+                "fr": "Sport et bien-être"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-tv-movies-dvd",
+            "name": {
+                "en": "TV, Movies & DVDs",
+                "fr": "Télévision, Films et DVD"
+            },
+            "domain": "buy-and-sell"
+        },
+        {
+            "path": "bs-tooling",
             "name": {
                 "en": "Tools",
                 "fr": "Outils"
@@ -588,7 +551,7 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "tickets",
+            "path": "bs-tickets",
             "name": {
                 "en": "Tickets",
                 "fr": "Billets d'événement"
@@ -596,49 +559,27 @@
             "domain": "buy-and-sell"
         },
         {
-            "path": "videogames",
+            "path": "bs-videogames",
             "name": {
                 "en": "Video Games & Consoles",
                 "fr": "Jeux vidéo et consoles"
             },
             "domain": "buy-and-sell"
         },
-        {
-            "path": "item-wanted",
-            "name": {
-                "en": "Wanted",
-                "fr": "Recherché"
-            },
-            "domain": "buy-and-sell"
-        },
-
-
-
-
-
-
 
         {
             "path": "s-repair",
             "name": {
-                "en": "Repairs",
-                "fr": "Réparation"
-            },
-            "domain": "services"
-        },
-        {
-            "path": "s-electronics",
-            "name": {
-                "en": "Electronics",
-                "fr": "Électroniques"
+                "en": "Repair Services",
+                "fr": "Service de réparation"
             },
             "domain": "services"
         },
         {
             "path": "s-cleaning",
             "name": {
-                "en": "Cleaning",
-                "fr": "Nettoyage"
+                "en": "Cleaning Services",
+                "fr": "Service de nettoyage"
             },
             "domain": "services"
         },
@@ -650,21 +591,11 @@
             },
             "domain": "services"
         },
-        
         {
-            "path": "s-legal",
+            "path": "s-legal-financial",
             "name": {
-                "en": "Legal",
-                "fr": "Juridique"
-            },
-            "domain": "services"
-        },
-        
-        {
-            "path": "s-financial",
-            "name": {
-                "en": "Financial",
-                "fr": "Finances"
+                "en": "Legal & Financial Services",
+                "fr": "Services financiers et juridique"
             },
             "domain": "services"
         },
@@ -677,57 +608,97 @@
             "domain": "services"
         },
         {
-            "path": "s-labor",
+            "path": "s-massage",
             "name": {
-                "en": "Labor",
-                "fr": "Travail"
+                "en": "Massage Therapy",
+                "fr": "Massothérapie"
             },
             "domain": "services"
         },
         {
-            "path": "s-trades",
+            "path": "s-daycare",
             "name": {
-                "en": "Skilled Trades",
-                "fr": "Main d'oeuvre"
+                "en": "Daycare",
+                "fr": "Garderie"
+            },
+            "domain": "services"
+        },
+        {
+            "path": "s-computers-cells",
+            "name": {
+                "en": "Computers & Cellphones",
+                "fr": "Ordinateurs et cellulaires"
+            },
+            "domain": "services"
+        },
+        {
+            "path": "s-web-programming",
+            "name": {
+                "en": "Web & Programming",
+                "fr": "Web et programmation"
+            },
+            "domain": "services"
+        },
+        {
+            "path": "s-construction",
+            "name": {
+                "en": "Construction and renovation",
+                "fr": "Construction et rénovation"
+            },
+            "domain": "services"
+        },
+        {
+            "path": "s-snow-landscape",
+            "name": {
+                "en": "Snow Removal & Landscaping",
+                "fr": "Déneigement et aménagement paysager"
+            },
+            "domain": "services"
+        },
+        {
+            "path": "s-moving-storage",
+            "name": {
+                "en": "Moving & Storage",
+                "fr": "Déménagement et entreposage"
             },
             "domain": "services"
         },
         {
             "path": "s-rentals",
             "name": {
-                "en": "Rentals",
-                "fr": "Locations"
+                "en": "Rentals Services",
+                "fr": "Services de location"
             },
             "domain": "services"
         },
         {
-            "path": "s-courses",
+            "path": "s-teaching",
             "name": {
-                "en": "Courses",
-                "fr": "Cours"
+                "en": "Teaching, Courses and tutoring",
+                "fr": "Enseignement, cours et tutorat"
             },
             "domain": "services"
         },
         {
-            "path": "s-events",
+            "path": "s-event-planning",
             "name": {
-                "en": "Events",
-                "fr": "Évènements"
+                "en": "Event Planning",
+                "fr": "Planification d'événements"
             },
             "domain": "services"
         },
         {
-            "path": "s-travel",
+            "path": "s-sales",
             "name": {
-                "en": "Travel",
-                "fr": "Voyages"
+                "en": "Garage sales, flea markets and auctions",
+                "fr": "Ventes de garage, marchés aux puces et encans"
             },
             "domain": "services"
         },
         {
             "path": "s-pets",
             "name": {
-                "en": "Pet care",
+                "en": "Pet Care Services",
                 "fr": "Soins aux animaux"
             },
             "domain": "services"
@@ -735,10 +706,31 @@
         {
             "path": "s-other",
             "name": {
-                "en": "Other",
-                "fr": "Autre"
+                "en": "Other Services",
+                "fr": "Autre services"
             },
             "domain": "services"
+        },
+
+
+
+
+
+        {
+            "path": "c-events",
+            "name": {
+                "en": "Events & Nightlife",
+                "fr": "Évènements & Vie nocturne"
+            },
+            "domain": "social"
+        },
+        {
+            "path": "c-rencontres",
+            "name": {
+                "en": "Seeking",
+                "fr": "Recontres"
+            },
+            "domain": "social"
         }
     ]
 }

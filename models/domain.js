@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 
 let domain = new Schema(
     {
+        path: {
+            type: String
+        },
         name: {
             type: Object
-        },
-        displayOrder: {
-            type: Number
         }
     },
     { collection: 'domains' }
