@@ -1,0 +1,27 @@
+<div class="row mt-4">
+    {{#if list_mode}}
+    <div class="col-2" style="">
+    </div>
+    <div class="col-7">
+        {{#each ads}}
+        <div class="mb-1">
+            <a href="{{this.path}}">{{this.name}}</a>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="col-2" style="">
+    </div>
+    <div class="col-9">
+        <div class="row">
+            {{#each ads}}
+            <div class="col-3">
+                <div class="card">
+                    ad
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+</div>

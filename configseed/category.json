@@ -5,47 +5,53 @@
             "name" : {
                 "en": "Buy & Sell",
                 "fr": "Achat et vente"
-            }
+            },
+            "displayOrder": 0
         },
         {
             "path": "vehicules",
             "name" : {
                 "en": "Vehicules",
                 "fr": "Véhicules"
-            }
+            },
+            "displayOrder": 1
         },
         {
             "path": "real-estate",
             "name": {
                 "en": "Real estate",
                 "fr": "Immobilier"
-            }
+            },
+            "displayOrder": 2
         },
         {
             "path": "employment",
             "name": {
                 "en": "Employment",
                 "fr": "Emplois"
-            }
+            },
+            "displayOrder": 3
         },
         {
             "path": "services",
             "name": {
                 "en": "Services",
                 "fr": "Services"
-            }
+            },
+            "displayOrder": 4
         },
         {
             "path": "community",
             "name": {
                 "en": "Community",
                 "fr": "Communauté"
-            }
+            },
+            "displayOrder": 5
         }
     ],
     "categories": [
         {
-            "path": "for-rent",
+            "path": "re-for-rent",
             "name": {
                 "en": "For Rent",
                 "fr": "À louer"
@@ -53,7 +59,7 @@
             "domain": "real-estate"
         },
         {
-            "path": "for-sale",
+            "path": "re-for-sale",
             "name": {
                 "en": "For Sale",
                 "fr": "À vendre"
@@ -61,7 +67,7 @@
             "domain": "real-estate"
         },
         {
-            "path": "commercial",
+            "path": "re-commercial",
             "name": {
                 "en": "Commercial",
                 "fr": "Commercial"
@@ -69,7 +75,7 @@
             "domain": "real-estate"
         },
         {
-            "path": "storage-parking",
+            "path": "re-storage-parking",
             "name": {
                 "en": "Storage & Parking",
                 "fr": "Entreposage et stationement"
@@ -77,7 +83,7 @@
             "domain": "real-estate"
         },
         {
-            "path": "vacation-rentals",
+            "path": "re-vacation-rentals",
             "name": {
                 "en": "Vacation Rentals",
                 "fr": "Location pour vacances"
@@ -85,7 +91,7 @@
             "domain": "real-estate"
         },
         {
-            "path": "cars",
+            "path": "v-cars",
             "name": {
                 "en": "Cars",
                 "fr": "Voitures"
@@ -93,7 +99,7 @@
             "domain": "vehicules"
         },
         {
-            "path": "trucks",
+            "path": "v-trucks",
             "name": {
                 "en": "Trucks",
                 "fr": "Camions"
@@ -101,7 +107,7 @@
             "domain": "vehicules"
         },
         {
-            "path": "vans",
+            "path": "v-vans",
             "name": {
                 "en": "Vans",
                 "fr": "Fourgonnettes"
@@ -109,7 +115,7 @@
             "domain": "vehicules"
         },
         {
-            "path": "motos",
+            "path": "v-motos",
             "name": {
                 "en": "Motorbikes & Scooters",
                 "fr": "Motos & Scooters"
@@ -117,7 +123,7 @@
             "domain": "vehicules"
         },
         {
-            "path": "rvs-camping",
+            "path": "v-rvs-camping",
             "name": {
                 "en": "Recreational Vehicules & Camping",
                 "fr": "Véhicules récréatifs et camping"
@@ -125,7 +131,7 @@
             "domain": "vehicules"
         },
         {
-            "path": "boats",
+            "path": "v-boats",
             "name": {
                 "en": "Boats",
                 "fr": "Bateaux"
@@ -133,7 +139,7 @@
             "domain": "vehicules"
         },
         {
-            "path": "heavy-vehicules",
+            "path": "v-heavy-vehicules",
             "name": {
                 "en": "Heavy Vehicules",
                 "fr": "Véhicules lours"
@@ -718,8 +724,9 @@
             },
             "domain": "services"
         },
+
         {
-            "path": "c-events",
+            "path": "c-events-nightlife",
             "name": {
                 "en": "Events & Nightlife",
                 "fr": "Évènements & Vie nocturne"
@@ -727,7 +734,7 @@
             "domain": "community"
         },
         {
-            "path": "c-meet",
+            "path": "c-meet-seek",
             "name": {
                 "en": "Meet",
                 "fr": "Recontres"
@@ -735,10 +742,18 @@
             "domain": "community"
         },
         {
-            "path": "c-lostfound",
+            "path": "c-lost-found",
             "name": {
                 "en": "Lost & Found",
                 "fr": "Perdu et trouvé"
+            },
+            "domain": "community"
+        },
+        {
+            "path": "c-other",
+            "name": {
+                "en": "Various",
+                "fr": "Divers"
             },
             "domain": "community"
         }

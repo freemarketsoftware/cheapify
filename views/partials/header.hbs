@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg header">
     <div class="container-fluid">
-        <a class="navbar-brand logo" href="/ui/home"><span class="navbar-brand text-white fw-bold">CHEAPIFY</span></a>
+        <a class="navbar-brand logo" href="/"><span class="navbar-brand text-white fw-bold">CHEAPIFY</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,21 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item active">
+                <li class="nav-item" style="margin-right: 20px;">
+                    <select class="mt-2" id="locale">
+                        <option>English</option>
+                        <option>Français</option>
+                    </select>
+                </li>
+                <li class="nav-item" style="margin-right: 20px;">
+                    <select class="mt-2" id="locationSelectHeader">
+                        <option value="all">All</option>
+                        {{#each uiConfig.cities}}
+                        <option value="{{this.path}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/ui/create">
                         <i class="fa-solid fa-circle-plus" style="margin-left: 2px;"></i>
                         <span>Créer une annonce</span>
@@ -48,10 +62,7 @@
         max-height: 50px;
     }
 
-    .categories {
-        background-color: black;
-        color: white
-    }
+
 
     /* Header Items */
     .nav-item>a {
@@ -77,6 +88,30 @@
     }
 </style>
 
+
+
+<script>
+
+    function searchInput() {
+        console.log('searchInput')
+    }
+
+    function locationInput() {
+        console.log('locationInput')
+    }
+
+    document.getElementById('locationSelectHeader').addEventListener('change', async (event) => {
+        const res = await fetch(`/location/city/${event.target.value}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    })
+
+</script>
+
+
 {{!--
 
 <div class="header row">
@@ -100,15 +135,3 @@
         </div>
     </div>
 </div> --}}
-
-<script>
-
-    function searchInput() {
-        console.log('searchInput')
-    }
-
-    function locationInput() {
-        console.log('locationInput')
-    }
-
-</script>

@@ -9,6 +9,9 @@ let domain = new Schema(
         },
         name: {
             type: Object
+        },
+        displayOrder: {
+            type: Number
         }
     },
     { collection: 'domains' }

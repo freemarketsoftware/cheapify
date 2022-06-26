@@ -33,24 +33,36 @@ connection.once('open', () => { })
 
 async function run() {
 
+    City.find({}, (err, cities) => {
+        cities.forEach(async (city) => {
+            // dom.nameMix = undefined
+            // dom.nameMix = {
+            //     'en': dom.name.get('en'),
+            //     'fr': dom.name.get('fr')
+            // }
+            city.path = city.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            city.path = city.path.toLowerCase().replace(/[^a-zA-Z]+/g, "");
+            console.log(city.path)
+            await city.save()
+        })
+    })
 
-    const domains = await Domain.find({}).lean()
-    const categories = await Category.find({}).lean()
 
 
+    // const domains = await Domain.find({}).lean()
+    // const categories = await Category.find({}).lean()
 
-    console.log(domains)
-
-
-
-
-
-
-
-
-    // const file = await fs.readFileSync('./data/businesses.json', { encoding: 'utf8', flag: 'r' })
+    // console.log(domains)
+    
+    // const file = await fs.readFileSync('./config/category.json', { encoding: 'utf8', flag: 'r' })
     // const json = JSON.parse(file)
 
+
+
+    // console.log(json)
+
+
+    
 
     // json.slice(0, 3).forEach(async (biz) => {
     //     const business = new Business({

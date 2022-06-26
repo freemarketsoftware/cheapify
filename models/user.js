@@ -18,6 +18,10 @@ let user = new Schema(
         long: {
             type: String,
         },
+        lastCitySet: {
+            type: Schema.Types.ObjectId,
+            ref: 'City'
+        },
         ads: [{
             type: Schema.Types.ObjectId,
             ref: 'Ad'

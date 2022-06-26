@@ -4,7 +4,10 @@ const Schema = mongoose.Schema
 
 let ad = new Schema(
     {
-        title: {
+        name: {
+            type: String
+        },
+        path: {
             type: String
         },
         description: {

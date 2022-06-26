@@ -27,3 +27,27 @@
         console.log(res)
     })
 </script>
+
+
+{{!-- 
+    let title
+    let description
+
+    document.getElementById('titleProject').addEventListener('input', function(event) {
+        title = event.target.value
+    })
+    document.getElementById('descriptionProject').addEventListener('input', function(event) {
+        description = event.target.value
+    })
+
+    document.getElementById('editProjectBtn').addEventListener('click', async function (event) {
+        event.preventDefault()
+        const res = await fetch('/ads/edit/2', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, description }),
+        })
+        console.log(res)
+    }) --}}

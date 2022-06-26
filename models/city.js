@@ -7,6 +7,9 @@ let city = new Schema(
     name: {
       type: String
     },
+    path: {
+      type: String
+    },
     state: {
       type: String
     }

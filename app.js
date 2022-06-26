@@ -41,6 +41,9 @@ const { engine } = require('express-handlebars')
 const uiRoutes = require('./routes/ui')
 const authRoutes = require('./routes/auth')
 const adsRoutes = require('./routes/ads')
+const locationRoutes = require('./routes/location')
+
+const handlebarsHelpers = require('./helpers/handlebarsHelpers')
 
 const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || '3000';
@@ -79,9 +82,10 @@ app.use(cookieParser())
 app.options('*', cors());
 
 // ROUTING
-app.use('/ui', uiRoutes)
+app.use('/', uiRoutes)
 app.use('/auth', authRoutes)
 app.use('/ads', adsRoutes)
+app.use('/location', locationRoutes)
 
 // DATABASE
 mongoose.connect(mongo_uri)
@@ -94,6 +98,7 @@ app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'alt',
     partialsDir: __dirname + '/views/partials/',
+    helpers: handlebarsHelpers
 }))
 app.set('view engine', 'hbs')
 

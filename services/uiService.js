@@ -62,7 +62,7 @@ const getCities = async () => {
     return cities
 }
 
-const getConfig = async () => {
+const getUIConfig = async () => {
     const categoryHeaderConfig = await getCategoryHeaderConfig()
     return {
         domainsWithCategories: categoryHeaderConfig.domainsWithCategories,
@@ -74,4 +74,4 @@ const getConfig = async () => {
     }
 }
 
-module.exports.getConfig = getConfig
+module.exports.getUIConfig = getUIConfig

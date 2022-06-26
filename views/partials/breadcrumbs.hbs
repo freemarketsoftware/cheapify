@@ -1,33 +1,14 @@
-{{!-- <nav class="breadcrumb-header">
-  <div class="nav-wrapper">
-    <div class="col s12">
-      {{#each breadcrumbs}}
-      <a href="#!" class="breadcrumb">{{this}}</a>
-      {{/each}}
-    </div>
+<div class="row" style="border-bottom: 1px solid black">
+  <div class="mt-2" style="margin-left: 15px">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        {{#each breadcrumbs}}
+        <li class="breadcrumb-item"><a href="{{this.path}}">{{translate locale='en' obj=this.name}}</a></li>
+        {{/each}}
+      </ol>
+    </nav>
   </div>
-</nav> --}}
-
-<nav aria-label="breadcrumb mt-2" style="margin-top: 16px;">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Library</a></li>
-    <li class="breadcrumb-item" aria-current="page">Data</li>
-  </ol>
-</nav>
-
+</div>
 <style>
-  a {
-    color: white;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: white;
-    text-decoration: none;
-  }
-
-  .breadcrumb-item {
-    color: white;
-  }
-
 </style>

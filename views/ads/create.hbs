@@ -37,7 +37,7 @@
                                         <span>Type d'annonce</span>
                                         <select id="domain" placeholder="Filtre des catégories">
                                             {{#each domains}}
-                                            <option value="{{this._id}}">{{translate this.name}}</option>
+                                            <option value="{{this._id}}">{{translate locale='en' obj=this.name}}</option>
                                             {{/each}}
                                         </select>
                                     </div>
@@ -45,7 +45,7 @@
                                         <span>Categorie</span>
                                         <select id="category" placeholder="Sélectionner une catégorie">
                                             {{#each categories}}
-                                            <option value="{{this._id}}">{{translate this.name}}</option>
+                                            <option value="{{this._id}}">{{translate locale='en' obj=this.name}}</option>
                                             {{/each}}
                                         </select>
                                     </div>
