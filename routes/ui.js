@@ -28,7 +28,6 @@ router.get('/:location/:category?', async (req, res) => {
     const location = await getLocationConfig(req)
     const pathLocation = req.params.location
     const pathCategory = req.params.category
-    console.log(locale)
     if(pathCategory) {
         // render category filtered with city
     } else {

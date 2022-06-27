@@ -60,6 +60,10 @@ const getCities = async () => {
     return cities
 }
 
+const getLocales = () => {
+    return [{label: 'English', langCode: 'en'},{label: 'Français', langCode: 'fr'}]
+}
+
 // replace with cached values for domains, categories and cities to avoid fetching DB
 
 const getUIConfig = async () => {
@@ -69,6 +73,7 @@ const getUIConfig = async () => {
         categories: categoryHeaderConfig.categories,
         domains: categoryHeaderConfig.domains,
         cities: await getCities(),
+        locales: await getLocales(),
     }
 }
 

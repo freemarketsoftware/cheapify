@@ -10,8 +10,9 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item" style="margin-right: 20px;">
                     <select class="mt-2" id="localeSelectHeader">
-                        <option value="en">English</option>
-                        <option value="fr">Français</option>
+                        {{#each uiConfig.locales}}
+                        <option value="{{this.langCode}}" {{#ifCond this.langCode '===' ../locale }} selected {{/ifCond}}>{{this.label}}</option>
+                        {{/each}}
                     </select>
                 </li>
                 <li class="nav-item" style="margin-right: 20px;">
