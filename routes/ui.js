@@ -8,6 +8,7 @@ const { registrationValidator, loginValidator } = require('../helpers/validators
 
 const { getUIConfig } = require('../services/uiService')
 const { getLocationConfig } = require('../services/locationService')
+const { extractLocale } = require('../services/localeService')
 
 const User = require('../models/user')
 const Ad = require('../models/ad')
@@ -22,12 +23,12 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:location/:category?', async (req, res) => {
-    const locale = extractLocale()
+    const locale = extractLocale(req)
     const uiConfig = await getUIConfig()
     const location = await getLocationConfig(req)
     const pathLocation = req.params.location
     const pathCategory = req.params.category
-
+    console.log(locale)
     if(pathCategory) {
         // render category filtered with city
     } else {

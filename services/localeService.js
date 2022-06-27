@@ -6,10 +6,13 @@ const isLocaleAvailable = (locale) => {
     return availableLocales.includes(locale)
 }
 
-const extractLocale = async (req) => {
+const extractLocale = (req) => {
     const locale = req.cookies.locale || null
+    console.log(locale)
     if(!locale || !isLocaleAvailable(locale)) {
         return 'en'
+    } else {
+        return locale
     }
 }
 

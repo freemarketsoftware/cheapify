@@ -36,10 +36,8 @@ const sortCategories = (locale) => (a, b) => {
 //     (a, b) => a[propName] == b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1
   
 //   arr.sort(propComparator('name'))
-//   console.log("By name", arr)
   
 //   arr.sort(propComparator('age'))
-//   console.log("By age", arr)
 
 
 const getCategoryHeaderConfig = async (locale) => {
