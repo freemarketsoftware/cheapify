@@ -4,11 +4,9 @@ const bcrypt = require('bcrypt')
 const { getTranslations } = require('../translations')
 
 const { authenticated, second } = require('../middlewares/authenticated')
-const { registrationValidator, loginValidator } = require('../helpers/validators');
+const { registrationValidator, loginValidator } = require('../helpers/validators')
 
-const { getConfig } = require('../helpers/ui')
-const { getPathing } = require('../services/pathing')
-const { getLocationByIp } = require('../services/geolocation')
+const { getLocationByIp } = require('../services/locationService')
 
 const User = require('../models/user')
 const Ad = require('../models/ad')
@@ -16,7 +14,7 @@ const City = require('../models/city')
 const Category = require('../models/category')
 const Domain = require('../models/domain')
 
-
+//Unused
 router.get('/', async (req, res) => {
     const headers = req.headers
     // req.headers['x-forwarded-for']
@@ -24,25 +22,27 @@ router.get('/', async (req, res) => {
     const ip = '192.222.174.165' || req.headers['x-forwarded-for'] || req.socket.remoteAddress || null
     const location = await getLocationByIp(ip)
     const locale = 'en'
-    const config = await getConfig();
+    const uiConfig = await getUIConfig();
 
 })
 
 router.post('/city/:location', async (req, res) => {
-    // response.setHeader('Set-Cookie', ['foo=bar; HttpOnly', 'x=42; HttpOnly', 'y=88']);
+    // store location in user or not ?
+    // maybe avoid storing location + ip address
     if (req.session.user) {
 
     }
-    // TODO: Validate that location exists
+
     const location = req.params.location
-    const domain = `http://localhost:3000/`
-    console.log(location)
-    // https://stackoverflow.com/questions/3467114/how-are-cookies-passed-in-the-http-protocol
+    const city = await City.findOne({path: location}).lean()
     // Set-Cookie:name=value[; expires=date][; domain=domain][; path=path][; secure]
-    res.setHeader('Set-Cookie', `location=${location}; path=/`);
-    res.json({location})
+    res.setHeader('Set-Cookie', `location=${city.path}; path=/`);
+    res.json({location: city.path})
 })
 
+
+
+// Unused, maybe frontend can
 router.post('/geolocation/:location', async (req, res) => {
     // response.setHeader('Set-Cookie', ['foo=bar; HttpOnly', 'x=42; HttpOnly', 'y=88']);
 

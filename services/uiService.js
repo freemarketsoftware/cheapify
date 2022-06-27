@@ -62,6 +62,8 @@ const getCities = async () => {
     return cities
 }
 
+// replace with cached values for domains, categories and cities to avoid fetching DB
+
 const getUIConfig = async () => {
     const categoryHeaderConfig = await getCategoryHeaderConfig()
     return {
@@ -69,8 +71,6 @@ const getUIConfig = async () => {
         categories: categoryHeaderConfig.categories,
         domains: categoryHeaderConfig.domains,
         cities: await getCities(),
-        categoryPath: '/category/',
-        adsPath: '/ads/',
     }
 }
 

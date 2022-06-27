@@ -7,8 +7,7 @@ const { authenticated, second } = require('../middlewares/authenticated')
 const { registrationValidator, loginValidator } = require('../helpers/validators');
 
 const { getUIConfig } = require('../services/uiService')
-const { getPathing } = require('../services/pathing')
-const { getLocationByIp } = require('../services/geolocation')
+const { getLocationConfig } = require('../services/locationService')
 
 const User = require('../models/user')
 const Ad = require('../models/ad')
@@ -18,29 +17,27 @@ const Domain = require('../models/domain')
 
 
 router.get('/', async (req, res) => {
-    const locale = 'en'
-    const uiConfig = await getUIConfig();
+    const location = await getLocationConfig(req)
+    res.redirect(`/${location.path}`)
+})
 
-    const locationCookie = req.cookies.location || null
-    console.log(locationCookie)
-    const ip = '192.222.174.165' || req.headers['x-forwarded-for'] || req.socket.remoteAddress || null
-    const locationIp = await getLocationByIp(ip)
+router.get('/:location/:category?', async (req, res) => {
+    const locale = extractLocale()
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
+    const pathLocation = req.params.location
+    const pathCategory = req.params.category
 
-    if (locationCookie) {
-        const city = City.find({})
-        // redirect to location
+    if(pathCategory) {
+        // render category filtered with city
+    } else {
+        // render city without category filter
+        res.render('main', {
+            layout: 'index', uiConfig, locale, location
+        })
+
     }
-    // else if(locationIp) {
-    // redirect to location
-    // } 
-    else {
-        // redirect to city selection
-    }
 
-
-    res.render('main', {
-        layout: 'index', uiConfig, locale
-    })
 
 })
 
@@ -56,11 +53,8 @@ router.get('/search', async (req, res) => {
 
 router.get('/:category/:city', async (req, res) => {
     const locale = 'en'
-    const pathing = await getPathing({
-        city: req.params.city,
-        category: req.params.category
-    });
-    const uiConfig = await getUIConfig();
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = []
     // const translations = { ...getTranslations('LISTINGS'), ...getTranslations('AD'), ...getTranslations('HEADER') }
 
@@ -107,7 +101,7 @@ router.get('/:category/:city', async (req, res) => {
 
 
     res.render('explorer/list', {
-        layout: 'index', uiConfig, ads, breadcrumbs, list_mode: true, pathing, locale
+        layout: 'index', uiConfig, ads, breadcrumbs, list_mode: true, locale
     })
 })
 
@@ -116,13 +110,10 @@ router.get('/:category/:city', async (req, res) => {
 // router.get('/:city', async (req, res) => {
 //     const city = 'gatineau'
 //     const locale = 'en'
-//     const pathing = await getPathing({
-//         category: req.params.category
-//     });
 //     const uiConfig = await getUIConfig();
 //     const breadcrumbs = []
 //     res.render('main', {
-//         layout: 'index', uiConfig, pathing,
+//         layout: 'index', uiConfig,
 //         helpers: {
 //             translate: function (obj) { return obj[locale]; }
 //         }
@@ -131,24 +122,24 @@ router.get('/:category/:city', async (req, res) => {
 
 // router.get('/:city/:category/:ad', async (req, res) => {
 //     const locale = 'en'
-//     const pathing = await getPathing(req.params.city, req.params.category);
 //     const uiConfig = await getUIConfig();
 //     //get domain, get category, get ad to generate breadcrumbs
 //     const breadcrumbs = [{}, {}]
 
 
 //     res.render('explorer/ad', {
-//         layout: 'index', ads, pathing,
+//         layout: 'index', ads,
 //         helpers: {
 //             translate: function (obj) { return obj[locale]; }
 //         }
 //     })
 // })
 
-
+//refactor with uiConfig
 router.get('/create', [], async (req, res) => {
     const locale = 'en'
-    const uiConfig = await getUIConfig();
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = [{}, {}]
     // const user = await User.findOne({ email: req.session.user.email })
     const categories = await Category.find({}).lean()
@@ -162,7 +153,8 @@ router.get('/create', [], async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const locale = 'en'
-    const uiConfig = await getUIConfig();
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = []
 
     const translations = { ...getTranslations('EDIT'), ...getTranslations('AD'), ...getTranslations('HEADER') }
@@ -181,38 +173,42 @@ router.get('/edit/:id', async (req, res) => {
 
 router.get('/login', async (req, res) => {
     const locale = 'en'
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = []
-    const uiConfig = await getUIConfig();
 
     res.render('auth/login', {
-        layout: 'index', locale,
+        layout: 'index', locale, uiConfig, location
     })
 })
 
 router.get('/register', async (req, res) => {
     const locale = 'en'
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = []
-    const uiConfig = await getUIConfig();
 
     res.render('auth/register', {
-        layout: 'index', locale,
+        layout: 'index', locale, uiConfig, location
     })
 })
 
 router.get('/reset', async (req, res) => {
     const locale = 'en'
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = []
-    const uiConfig = await getUIConfig();
 
     res.render('auth/reset', {
-        layout: 'index', locale
+        layout: 'index', locale, uiConfig, location
     })
 })
 
 router.get('/logout', [authenticated], async (req, res) => {
     const locale = 'en'
+    const uiConfig = await getUIConfig()
+    const location = await getLocationConfig(req)
     const breadcrumbs = []
-    const uiConfig = await getUIConfig();
 
     req.session.destroy()
     res.redirect('/')
