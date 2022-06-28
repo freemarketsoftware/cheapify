@@ -61,7 +61,7 @@ const getCities = async () => {
 }
 
 const getLocales = () => {
-    return [{label: 'English', langCode: 'en'},{label: 'Français', langCode: 'fr'}]
+    return [{label: 'English', langCode: 'en'}, {label: 'Français', langCode: 'fr'}]
 }
 
 // replace with cached values for domains, categories and cities to avoid fetching DB

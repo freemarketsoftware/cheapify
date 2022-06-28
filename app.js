@@ -42,7 +42,6 @@ const uiRoutes = require('./routes/ui')
 const authRoutes = require('./routes/auth')
 const adsRoutes = require('./routes/ads')
 const locationRoutes = require('./routes/location')
-const localeRoutes = require('./routes/locale')
 
 const handlebarsHelpers = require('./helpers/handlebarsHelpers')
 
@@ -87,7 +86,6 @@ app.use('/', uiRoutes)
 app.use('/auth', authRoutes)
 app.use('/ads', adsRoutes)
 app.use('/location', locationRoutes)
-app.use('/locale', localeRoutes)
 
 // DATABASE
 mongoose.connect(mongo_uri)

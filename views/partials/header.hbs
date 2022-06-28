@@ -11,7 +11,8 @@
                 <li class="nav-item" style="margin-right: 20px;">
                     <select class="mt-2" id="localeSelectHeader">
                         {{#each uiConfig.locales}}
-                        <option value="{{this.langCode}}" {{#ifCond this.langCode '===' ../locale }} selected {{/ifCond}}>{{this.label}}</option>
+                        <option value="{{this.langCode}}" {{#ifCond this.langCode '===' ../locale }} selected
+                            {{/ifCond}}>{{this.label}}</option>
                         {{/each}}
                     </select>
                 </li>
@@ -19,7 +20,8 @@
                     <select class="mt-2" id="locationSelectHeader">
                         <option value="all">All</option>
                         {{#each uiConfig.cities}}
-                        <option value="{{this.path}}" {{#ifCond this.path '===' ../location.path }} selected {{/ifCond}}>
+                        <option value="{{this.path}}" {{#ifCond this.path '===' ../location.path }} selected
+                            {{/ifCond}}>
                             {{this.name}}</option>
                         {{/each}}
                     </select>
@@ -57,6 +59,37 @@
 </nav>
 
 
+
+<script>
+    document.getElementById('locationSelectHeader').addEventListener('change', async (event) => {
+        const res = await fetch(`/location/city/${event.target.value}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ previousUrl: window.location.href }),
+        })
+
+        const json = await res.json()
+        console.log(json.location)
+        console.log(previousUrl)
+
+        if (previousUrl.slice(0, 7) === 'http://' || previousUrl.slice(0, 8) === 'https://') {
+            console.log('starts as an url')
+        }
+
+        location.reload()
+    })
+
+    document.getElementById('localeSelectHeader').addEventListener('change', async (event) => {
+        let newUrl = window.location.origin
+        const slugs = window.location.pathname.substring(1, window.location.pathname.length).split('/')
+        slugs[0] = event.target.value
+        newUrl += '/' + slugs.join('/')
+        window.location.href = newUrl;
+    })
+</script>
+
 <style>
     .header {
         background-color: red;
@@ -64,9 +97,6 @@
         max-height: 50px;
     }
 
-
-
-    /* Header Items */
     .nav-item>a {
         color: white;
         font-weight: normal;
@@ -91,42 +121,6 @@
 </style>
 
 
-
-<script>
-
-    function searchInput() {
-        console.log('searchInput')
-    }
-
-    function locationInput() {
-        console.log('locationInput')
-    }
-
-    document.getElementById('locationSelectHeader').addEventListener('change', async (event) => {
-        const res = await fetch(`/location/city/${event.target.value}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-
-        const json = await res.json()
-        console.log(json.location)
-    })
-
-    document.getElementById('localeSelectHeader').addEventListener('change', async (event) => {
-        const res = await fetch(`/locale/${event.target.value}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-
-        const json = await res.json()
-        console.log(json.locale)
-    })
-
-</script>
 
 
 {{!--

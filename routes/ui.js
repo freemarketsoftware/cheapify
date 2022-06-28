@@ -16,13 +16,13 @@ const City = require('../models/city')
 const Category = require('../models/category')
 const Domain = require('../models/domain')
 
-
-router.get('/', async (req, res) => {
+// Solid
+router.get('/:locale?', async (req, res) => {
     const location = await getLocationConfig(req)
-    res.redirect(`/${location.path}`)
+    res.redirect(`/${extractLocale(req.params.locale) || 'en'}/${location.path}`)
 })
 
-router.get('/:location/:category?', async (req, res) => {
+router.get('/:locale/:location/:category?', async (req, res) => {
     const locale = extractLocale(req)
     const uiConfig = await getUIConfig()
     const location = await getLocationConfig(req)
@@ -30,18 +30,19 @@ router.get('/:location/:category?', async (req, res) => {
     const pathCategory = req.params.category
     if(pathCategory) {
         // render category filtered with city
+        // res.render('main', {
+        //     layout: 'index', uiConfig, locale, location
+        // })
     } else {
         // render city without category filter
         res.render('main', {
             layout: 'index', uiConfig, locale, location
         })
-
     }
-
-
 })
 
-router.get('/search', async (req, res) => {
+router.get('/:locale/:location/search', async (req, res) => {
+    const locale = extractLocale(req)
     var category = req.query.category;
     var city = req.query.city;
     var term = req.query.term;

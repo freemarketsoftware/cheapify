@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
     const location = await getLocationByIp(ip)
     const locale = 'en'
     const uiConfig = await getUIConfig();
-
 })
 
 router.post('/city/:location', async (req, res) => {
@@ -32,11 +31,13 @@ router.post('/city/:location', async (req, res) => {
     if (req.session.user) {
 
     }
-
+    const previousUrl = req.body.previousUrl
     const location = req.params.location
     const city = await City.findOne({path: location}).lean()
     // Set-Cookie:name=value[; expires=date][; domain=domain][; path=path][; secure]
     res.setHeader('Set-Cookie', `location=${city.path}; path=/`);
+
+
     res.json({location: city.path})
 })
 
