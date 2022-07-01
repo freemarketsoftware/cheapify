@@ -1,53 +1,132 @@
-<form>
-    <input id="titleProject" type="text"/>
-    <textarea id="descriptionProject"></textarea>
-    <button id="editProjectBtn">Update project</button>
-</form>
+<div class="create-project-component container">
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-9 mt-4 p-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <span>Modifier une annonce</span>
+                    </div>
+                    <div class="card-text">
+                        <form action="/create" id="editForm" name="editForm" method="post"
+                            enctype="multipart/form-data">
+                            <div class="">
+                                <div class="">
+                                    <div class="">
+                                        <span>Adresse Email de contact</span>
+                                        <input id="email" class="form-control" type="text" placeholder="Adresse email de contact"
+                                            value="asdasd@gmail.com" />
+                                    </div>
+                                    <div class="">
+                                        <span>Titre de l'annonce</span>
+                                        <input id="title" class="form-control" type="text" placeholder="Titre de l'annonce"
+                                            value="My title" />
+                                    </div>
+                                    <div class="">
+                                        <span>Prix</span>
+                                        <input id="price" class="form-control" type="text" placeholder="Prix" value="100" />
+                                    </div>
+                                    <div class="">
+                                        <span>Description</span>
+                                        <input id="description" class="form-control" type="text" placeholder="Description de l'annonce" />
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="">
+                                        <span>Type d'annonce</span>
+                                        <select id="domain" class="form-control" placeholder="Filtre des catégories">
+                                            {{#each uiConfig.domains}}
+                                            <option value="{{this._id}}">{{translate locale='en' obj=this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <span>Categorie</span>
+                                        <select id="category" class="form-control" placeholder="Sélectionner une catégorie">
+                                            {{#each uiConfig.categories}}
+                                            <option value="{{this._id}}">{{translate locale='en' obj=this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <span>Image(s)</span>
+                                        <input type="file" id="pictures" class="form-control" multiple />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end">
+                                <button type="submit" class="btn btn-primary" id="create_submit-btn">Créer
+                                    l'annonce</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/css/ads/ads.css" />
 
 <script>
-    let title
-    let description
-
-    document.getElementById('titleProject').addEventListener('input', function(event) {
-        title = event.target.value
-    })
-    document.getElementById('descriptionProject').addEventListener('input', function(event) {
-        description = event.target.value
-    })
-
-    document.getElementById('editProjectBtn').addEventListener('click', async function (event) {
-        event.preventDefault()
-        const res = await fetch('/ads/edit/2', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
+    const validation = new window.JustValidate('#editForm',
+        {
+            focusInvalidField: true,
+        },
+        [{
+            key: 'titleRequired',
+            dict: {
+                en: 'Ad title is required',
+                fr: 'Le titre de l\'annonce est requis',
+            }
+        },
+        {
+            key: 'descriptionRequired',
+            dict: {
+                en: 'Ad description is required',
+                fr: 'La description de l\'annonce est requise',
+            }
+        }]
+    )
+    validation.setCurrentLocale('fr')
+    validation
+        .addField('#title', [
+            {
+                rule: 'required',
+                errorMessage: 'titleRequired',
             },
-            body: JSON.stringify({ title, description }),
+        ])
+        .addField('#description', [
+            {
+                rule: 'required',
+                errorMessage: 'descriptionRequired',
+            },
+
+        ])
+        .onSuccess((event) => {
+            event.preventDefault()
+            submitEdit()
+        }).onFail((fields) => {
+
         })
-        console.log(res)
-    })
 </script>
 
+<script>
+    const title = document.getElementById('title')
+    const description = document.getElementById('description')
+    const picturesInput = document.getElementById('pictures')
 
-{{!-- 
-    let title
-    let description
+    async function submitEdit() {
+        const formData = new FormData()
 
-    document.getElementById('titleProject').addEventListener('input', function(event) {
-        title = event.target.value
-    })
-    document.getElementById('descriptionProject').addEventListener('input', function(event) {
-        description = event.target.value
-    })
+        formData.append('title', title.value)
+        formData.append('description', description.value)
 
-    document.getElementById('editProjectBtn').addEventListener('click', async function (event) {
-        event.preventDefault()
-        const res = await fetch('/ads/edit/2', {
+        for (const picture of picturesInput.files) {
+            formData.append('pictures', picture)
+        }
+
+        const res = await fetch('/ads/create', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, description }),
+            body: formData,
         })
-        console.log(res)
-    }) --}}
+    }
+</script>

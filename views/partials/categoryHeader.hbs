@@ -3,14 +3,14 @@
         {{#each uiConfig.domainsWithCategories}}
         <div class="col-2">
             <div class="nav-item dropdown dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="{{../pathing.city}}{{this.path}}" id="categ1" role="button"
+                <a class="nav-link dropdown-toggle" href="/{{../locale}}/ads/{{../location.path}}/{{this.path}}" id="categ1" role="button"
                     aria-expanded="false">
                     <span>{{translate locale=../locale obj=this.name}}</span>
                 </a>
                 <ul class="dropdown-menu category-dropdown" aria-labelledby="categ1">
                     {{#each this.categories}}
                     <li>
-                        <a class="dropdown-item" href="{{../../pathing.city}}{{this.path}}">{{translate locale=../../locale obj=this.name}}</a>
+                        <a class="dropdown-item" href="/{{../../locale}}/ads/{{../../location.path}}/{{this.path}}">{{translate locale=../../locale obj=this.name}}</a>
                     </li>
                     {{/each}}
                 </ul>

@@ -3,15 +3,15 @@ const isLocaleAvailable = (locale) => {
     return availableLocales.includes(locale)
 }
 
-const extractLocale = (locale) => {
+const isLocaleValid = (locale) => {
     if (!locale || !isLocaleAvailable(locale)) {
-        return 'en'
+        return false
     } else {
-        return locale
+        return true
     }
 }
 
-module.exports.extractLocale = extractLocale
+module.exports.isLocaleValid = isLocaleValid
 module.exports.isLocaleAvailable = isLocaleAvailable
 
 

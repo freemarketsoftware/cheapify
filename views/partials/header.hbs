@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg header">
     <div class="container-fluid">
-        <a class="navbar-brand logo" href="/"><span class="navbar-brand text-white fw-bold">CHEAPIFY</span></a>
+        <a class="navbar-brand logo" href="/{{locale}}"><span class="navbar-brand text-white fw-bold">CHEAPIFY</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item" style="margin-right: 20px;">
-                    <select class="mt-2" id="localeSelectHeader">
+                    <select class="mt-2" id="localeChanger">
                         {{#each uiConfig.locales}}
                         <option value="{{this.langCode}}" {{#ifCond this.langCode '===' ../locale }} selected
                             {{/ifCond}}>{{this.label}}</option>
@@ -17,7 +17,7 @@
                     </select>
                 </li>
                 <li class="nav-item" style="margin-right: 20px;">
-                    <select class="mt-2" id="locationSelectHeader">
+                    <select class="mt-2" id="locationChanger">
                         <option value="all">All</option>
                         {{#each uiConfig.cities}}
                         <option value="{{this.path}}" {{#ifCond this.path '===' ../location.path }} selected
@@ -27,30 +27,30 @@
                     </select>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/ui/create">
+                    <a class="nav-link" aria-current="page" href="/{{locale}}/create">
                         <i class="fa-solid fa-circle-plus" style="margin-left: 2px;"></i>
                         <span>Créer une annonce</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ui/login">
+                    <a class="nav-link" href="/{{locale}}/login">
                         <i class="fa-solid fa-user" style="margin-left: 2px;"></i>
                         <span>Connection</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="{{locale}}" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user" style="margin-left: 2px;"></i>
                         <span>Account name</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Mes annonces</a></li>
-                        <li><a class="dropdown-item" href="#">Préférences</a></li>
+                        <li><a class="dropdown-item" href="{{locale}}">Mes annonces</a></li>
+                        <li><a class="dropdown-item" href="{{locale}}">Préférences</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/ui/logout">Déconnexion</a></li>
+                        <li><a class="dropdown-item" href="/{{locale}}/logout">Déconnexion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -58,34 +58,17 @@
     </div>
 </nav>
 
-
-
 <script>
-    document.getElementById('locationSelectHeader').addEventListener('change', async (event) => {
-        const res = await fetch(`/location/city/${event.target.value}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ previousUrl: window.location.href }),
-        })
+    var currentLocation = '{{location.path}}'
 
-        const json = await res.json()
-        console.log(json.location)
-        console.log(previousUrl)
-
-        if (previousUrl.slice(0, 7) === 'http://' || previousUrl.slice(0, 8) === 'https://') {
-            console.log('starts as an url')
-        }
-
-        location.reload()
+    document.getElementById('locationChanger').addEventListener('change', async (event) => {
+        window.location.href = window.location.href.replace(currentLocation, event.target.value)
     })
 
-    document.getElementById('localeSelectHeader').addEventListener('change', async (event) => {
-        let newUrl = window.location.origin
+    document.getElementById('localeChanger').addEventListener('change', async (event) => {
         const slugs = window.location.pathname.substring(1, window.location.pathname.length).split('/')
         slugs[0] = event.target.value
-        newUrl += '/' + slugs.join('/')
+        const newUrl = window.location.origin + '/' + slugs.join('/')
         window.location.href = newUrl;
     })
 </script>

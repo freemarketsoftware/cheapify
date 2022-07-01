@@ -3,25 +3,27 @@ const fetch = require('node-fetch');
 const City = require('../models/city')
 
 
-// path secured
-// cookie --> ip --> default
-const getLocationConfig = async (req) => {
-    const locationCookie = req.cookies.location || null
-    const ip = '192.222.174.165' || req.headers['x-forwarded-for'] || req.socket.remoteAddress || null
-    let city = null
-    if (locationCookie) {
-        city = await City.findOne({path: locationCookie}).lean()
-    }
-    else if(ip) {
-        const ipLocation = await getLocationByIp(ip)
-        let cityStr = ipLocation.city.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        cityStr = cityStr.toLowerCase().replace(/[^a-zA-Z]+/g, "");
-        city = await City.findOne({path: cityStr}).lean()
-    }
+const getLocationByPath = async (req) => {
+    const locationByPath = req.params.location || null
+    const city = await City.findOne({ path: locationByPath }).lean()
+    return city
+}
 
-    if(!city) {
-        // Should be the state
-        city = await City.findOne({path: 'montreal'}).lean()
+const getLocation = async (req) => {
+    const locationByCookie = req.cookies.location || null
+    const locationByIp = '192.222.174.165' || req.headers['x-forwarded-for'] || req.socket.remoteAddress || null
+    let city = null
+    if (locationByCookie && !city) {
+        city = await City.findOne({ path: locationByCookie }).lean()
+        if (locationByIp && !city) {
+            const ipLocation = await getLocationByIp(locationByIp)
+            let cityStr = ipLocation.city.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            cityStr = cityStr.toLowerCase().replace(/[^a-zA-Z]+/g, "");
+            city = await City.findOne({ path: cityStr }).lean()
+        }
+    }
+    if (!city) {
+        city = await City.findOne({ path: 'montreal' }).lean()
     }
 
     return city
@@ -36,6 +38,7 @@ const getLocationByIp = async (ip) => {
 }
 
 
-module.exports.getLocationConfig = getLocationConfig
+module.exports.getLocation = getLocation
+module.exports.getLocationByPath = getLocationByPath
 
 

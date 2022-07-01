@@ -41,7 +41,6 @@ const { engine } = require('express-handlebars')
 const uiRoutes = require('./routes/ui')
 const authRoutes = require('./routes/auth')
 const adsRoutes = require('./routes/ads')
-const locationRoutes = require('./routes/location')
 
 const handlebarsHelpers = require('./helpers/handlebarsHelpers')
 
@@ -85,7 +84,6 @@ app.options('*', cors());
 app.use('/', uiRoutes)
 app.use('/auth', authRoutes)
 app.use('/ads', adsRoutes)
-app.use('/location', locationRoutes)
 
 // DATABASE
 mongoose.connect(mongo_uri)
